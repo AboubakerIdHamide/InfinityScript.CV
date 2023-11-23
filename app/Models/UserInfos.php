@@ -20,4 +20,8 @@ class UserInfos extends Model
         'biography',
         'user_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, "user_id", "id");
+    }
 }
