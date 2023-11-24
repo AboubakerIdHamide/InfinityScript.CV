@@ -15,4 +15,8 @@ class Template extends Model
         'url',
         'user_id',
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class, "resumes", "user_id", "template_id");
+    }
 }

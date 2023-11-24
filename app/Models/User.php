@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function userinfos(){
         return $this->hasOne(UserInfos::class, "user_id", "id");
     }
+
+    public function templates(){
+        return $this->belongsToMany(Template::class, "resumes", "user_id", "template_id");
+    }
 }
