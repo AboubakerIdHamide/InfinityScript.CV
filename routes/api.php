@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('/register', [Auth::class, 'register']);
+        Route::post('/login', [Auth::class, 'login']);
+    });
 });
