@@ -20,9 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-    Route::group(['prefix' => 'auth'], function () {
-        Route::post('/register', [Auth::class, 'register']);
-        Route::post('/login', [Auth::class, 'login']);
-    });
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('/register', [Auth::class, 'register']);
+    Route::post('/login', [Auth::class, 'login']);
+    Route::post('/verifiy-email', [Auth::class, 'verifyEmail'])->middleware('auth:sanctum');
 });
