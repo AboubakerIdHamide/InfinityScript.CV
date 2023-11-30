@@ -42,7 +42,7 @@ class RegisterRequest extends FormRequest
             "email.unique" => __("auth.email_already_taken"),
             "password.required" => __("auth.password_required"),
             "password.min" => __("auth.password_min"),
-            "password.confirmed" => __("auth.password_confirmed"),
+            "password.confirmed" => __("auth.password_confirmed")
         ];
     }
 

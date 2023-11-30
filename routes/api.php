@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\ExperienceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -20,9 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-    Route::group(['prefix' => 'auth'], function () {
-        Route::post('/register', [Auth::class, 'register']);
-        Route::post('/login', [Auth::class, 'login']);
-    });
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('/register', [Auth::class, 'register']);
+    Route::post('/login', [Auth::class, 'login']);
+});
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::resource('/experiences', ExperienceController::class)->except([
+         'edit', 'create'
+    ]);
 });
