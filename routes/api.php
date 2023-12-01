@@ -24,4 +24,6 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', [Auth::class, 'register']);
     Route::post('/login', [Auth::class, 'login']);
     Route::post('/verifiy-email', [Auth::class, 'verifyEmail'])->middleware('auth:sanctum');
+    Route::post('/forgot-password', [Auth::class, 'forgotPassword']);
+    Route::post('/reset-password', [Auth::class, 'resetPassword']);
 });

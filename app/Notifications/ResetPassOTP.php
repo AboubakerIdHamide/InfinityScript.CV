@@ -6,10 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\App;
 use Otp;
 
-class RegisterOTP extends Notification
+class ResetPassOTP extends Notification
 {
     use Queueable;
     public $message;
@@ -17,16 +16,17 @@ class RegisterOTP extends Notification
     public $fromMail;
     public $mailer;
     public $otp;
+
     /**
      * Create a new notification instance.
      */
     public function __construct()
     {
         $this->message = __("auth.otp_message");
-        $this->subject = __("auth.otp_verify_email_subject");
+        $this->subject = __("auth.otp_reset_pw_subject");
         $this->fromMail = "mahateamisgi@gmail.com";
-        $this->mailer="smtp";
-        $this->otp=new Otp;
+        $this->mailer = "smtp";
+        $this->otp = new Otp;
     }
 
     /**
@@ -46,11 +46,11 @@ class RegisterOTP extends Notification
     {
         $otp = $this->otp->generate($notifiable->email, 6, 60);
         return (new MailMessage)
-                    ->mailer($this->mailer)
-                    ->subject($this->subject)
-                    ->greeting('Hello !')
-                    ->line($this->message)
-                    ->line(__("auth.otp_code_message"). $otp->token);
+            ->mailer($this->mailer)
+            ->subject($this->subject)
+            ->greeting('Hello !')
+            ->line($this->message)
+            ->line(__("auth.otp_code_message") . $otp->token);
     }
 
     /**
