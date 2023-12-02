@@ -30,4 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('/experiences', ExperienceController::class)->except([
          'edit', 'create'
     ]);
+    Route::resource('/skills',SkillController::class)->except([
+        'edit', 'create'
+    ]);
 });
