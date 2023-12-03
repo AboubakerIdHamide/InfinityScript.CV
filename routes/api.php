@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -26,4 +27,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/verifiy-email', [Auth::class, 'verifyEmail'])->middleware('auth:sanctum');
     Route::post('/forgot-password', [Auth::class, 'forgotPassword']);
     Route::post('/reset-password', [Auth::class, 'resetPassword']);
+});
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::resource('templates', TemplateController::class)->except(['create', 'edit']);
+});
+
+Route::fallback(function () {
+    return response()->json([
+        'success' => false,
+        'message' => __("auth.not_found"),
+    ], 404);
 });

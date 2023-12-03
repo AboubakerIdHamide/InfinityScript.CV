@@ -23,4 +23,5 @@ return [
     "email_verified"=>"Email verified",
     "otp_sended"=>"Check your inbox or spam folder for the OTP code !",
     "password_reseted"=>"Password reseted successfully",
+    "not_found"=>"Not found",
 ];
