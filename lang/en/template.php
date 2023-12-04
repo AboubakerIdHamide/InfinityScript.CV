@@ -14,4 +14,11 @@ return [
     "url_invalid_type"=> "Template file invalid type only html, htm",
     "user_id_required"=> "User id is required",
     "user_not_exists"=> "User not exists",
+    "error_occured"=>"Error Occured",
+    "error_uploading_files"=>"Error Uploading Files",
+    "retrieved_successfully"=> 'Retrieved successfully.',
+    "created_successfully"=> 'Template created successfully.',
+    "not_found"=> 'Template not found.',
+    "updated_successfully"=> 'Template updated successfully.',
+    "deleted_successfully"=> 'Template deleted successfully.',
 ];

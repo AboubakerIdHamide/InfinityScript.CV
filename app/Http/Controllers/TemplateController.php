@@ -15,12 +15,20 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        $templates = Template::all();
-        return response()->json([
-            'success' => true,
-            'message' => 'Templates retrieved successfully.',
-            'data' => $templates
-        ]);
+        try{
+            $templates = Template::all();
+            return response()->json([
+                'success' => true,
+                'message' => __("template.retrieved_successfully"),
+                'data' => $templates
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'success' => true,
+                'message' => __("template.error_occured"),
+                'data' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**
@@ -28,27 +36,36 @@ class TemplateController extends Controller
      */
     public function store(TemplateRequest $request)
     {
-        $data = $request->validated();
-        try {
-            if ($request->hasFile('preview_img')) {
-                $data['preview_img'] = $request->file('preview_img')->store('public/templates/images');
-            }
+        try{
+            $data = $request->validated();
+            try {
+                if ($request->hasFile('preview_img')) {
+                    $data['preview_img'] = $request->file('preview_img')->store('public/templates/images');
+                }
 
-            if ($request->hasFile('url')) {
-                $data['url'] = $request->file('url')->store('public/templates/files');
+                if ($request->hasFile('url')) {
+                    $data['url'] = $request->file('url')->store('public/templates/files');
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __("template.error_uploading_files"),
+                    'data' => $e->getMessage(),
+                ]);
             }
-        } catch (\Exception $e) {
+            $template = Template::create($data);
             return response()->json([
-                'success' => false,
-                'message' => 'Error while uploading files.',
+                'success' => true,
+                'message' => __("template.created_successfully"),
+                'data' => $template
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'success' => true,
+                'message' => __("template.error_occured"),
+                'data' => $e->getMessage(),
             ]);
         }
-        $template = Template::create($data);
-        return response()->json([
-            'success' => true,
-            'message' => 'Template created successfully.',
-            'data' => $template
-        ]);
     }
 
     /**
@@ -56,18 +73,26 @@ class TemplateController extends Controller
      */
     public function show(string $id)
     {
-        $template = Template::find($id);
-        if (!$template) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Template not found',
-                'data' => null
-            ]);
-        } else {
+        try{
+            $template = Template::find($id);
+            if (!$template) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __("template.not_found"),
+                    'data' => null
+                ]);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'message' => __("template.retrieved_successfully"),
+                    'data' => $template
+                ]);
+            }
+        }catch(Exception $e){
             return response()->json([
                 'success' => true,
-                'message' => 'Template retrieved successfully.',
-                'data' => $template
+                'message' => __("template.error_occured"),
+                'data' => $e->getMessage(),
             ]);
         }
     }
@@ -77,36 +102,44 @@ class TemplateController extends Controller
      */
     public function update(TemplateRequest $request, string $id)
     {
-        $template = Template::find($id);
-        if (!$template) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Template not found',
-                'data' => null
-            ]);
-        } else {
-            $data = $request->validated();
-            try {
-                if ($request->hasFile('preview_img')) {
-                    Storage::delete($template->preview_img);
-                    $data['preview_img'] = $request->file('preview_img')->store('public/templates/images');
-                }
-
-                if ($request->hasFile('url')) {
-                    Storage::delete($template->url);
-                    $data['url'] = $request->file('url')->store('public/templates/files');
-                }
-            } catch (\Exception $e) {
+        try{
+            $template = Template::find($id);
+            if (!$template) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Error while uploading files.',
+                    'message' => __("template.not_found"),
+                    'data' => null
+                ]);
+            } else {
+                $data = $request->validated();
+                try {
+                    if ($request->hasFile('preview_img')) {
+                        Storage::delete($template->preview_img);
+                        $data['preview_img'] = $request->file('preview_img')->store('public/templates/images');
+                    }
+
+                    if ($request->hasFile('url')) {
+                        Storage::delete($template->url);
+                        $data['url'] = $request->file('url')->store('public/templates/files');
+                    }
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __("template.error_uploading_files"),
+                    ]);
+                }
+                $template->update($data);
+                return response()->json([
+                    'success' => true,
+                    'message' => __("template.updated_successfully"),
+                    'data' => $template
                 ]);
             }
-            $template->update($data);
+        }catch(Exception $e){
             return response()->json([
                 'success' => true,
-                'message' => 'Template updated successfully.',
-                'data' => $template
+                'message' => __("template.error_occured"),
+                'data' => $e->getMessage(),
             ]);
         }
     }
@@ -116,30 +149,38 @@ class TemplateController extends Controller
      */
     public function destroy(string $id)
     {
-        $template = Template::find($id);
-        if (!$template) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Template not found',
-                'data' => null
-            ]);
-        } else {
-            try{
-                Storage::delete($template->preview_img);
-                Storage::delete($template->url);
-                $template->delete();
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Template deleted successfully.',
-                    'data' => null
-                ]);
-            }catch(Exception $e){
+        try{
+            $template = Template::find($id);
+            if (!$template) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Error while deleting template.',
+                    'message' => __("template.not_found"),
                     'data' => null
                 ]);
+            } else {
+                try {
+                    Storage::delete($template->preview_img);
+                    Storage::delete($template->url);
+                    $template->delete();
+                    return response()->json([
+                        'success' => true,
+                        'message' => __("template.deleted_successfully"),
+                        'data' => null
+                    ]);
+                } catch (Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => __("template.error_occured"),
+                        'data' => null
+                    ]);
+                }
             }
+        }catch(Exception $e){
+            return response()->json([
+                'success' => true,
+                'message' => __("template.error_occured"),
+                'data' => $e->getMessage(),
+            ]);
         }
     }
 }

@@ -14,4 +14,11 @@ return [
     "url_invalid_type"=> "ملف القالب نوع غير صالح فقط html و htm",
     "user_id_required"=> "معرف المستخدم مطلوب",
     "user_not_exists"=> "المستخدم غير موجود",
+    "error_occured"=>"حدث خطأ",
+    "error_uploading_files"=>"خطأ في تحميل الملفات",
+    "retrieved_successfully"=> 'استرجع بنجاح.',
+    "created_successfully"=> 'تم إنشاء القالب بنجاح.',
+    "not_found"=> 'القالب غير موجود.',
+    "updated_successfully"=> 'تم تحديث القالب بنجاح.',
+    "deleted_successfully"=> 'تم حذف القالب بنجاح.',
 ];
