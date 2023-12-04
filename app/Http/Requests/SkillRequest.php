@@ -26,7 +26,8 @@ class SkillRequest extends FormRequest
         return [
             "skills" => "required",
             "hobbies" => "required",
-            "languages" => "required",
+            "languages" => "required|json",
+            "user_id"   => "exists:users,id",
         ];
     }
     /**
@@ -40,6 +41,8 @@ class SkillRequest extends FormRequest
             "skills.required" => __("skill.skills_required"),
             "hobbies.required" => __("skill.hobbies_required"),
             "languages.required" => __("skill.languages_required"),
+            "languages.json" => __("skill.invalid_json"),
+            "user_id.exists" => __("skill.user_does_not_exist"),
         ];
     }
 
@@ -50,7 +53,7 @@ class SkillRequest extends FormRequest
     *
     * @throws \Illuminate\Http\Exceptions\HttpResponseException
     */
-    public function failedValidate(Validator $validator){
+    protected function failedValidation(Validator $validator){
     throw new HttpResponseException(
             response()->json([
                 "success" => false,

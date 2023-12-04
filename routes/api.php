@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
