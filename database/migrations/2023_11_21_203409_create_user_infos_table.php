@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("phone");
             $table->string("address");
             $table->string("proffesion");
-            $table->string("linkedin_url");
-            $table->string("website_url");
+            $table->string("linkedin_url")->nullable();
+            $table->string("website_url")->nullable();
             $table->string("picture");
             $table->longText("biography");
             $table->unsignedBigInteger("user_id");

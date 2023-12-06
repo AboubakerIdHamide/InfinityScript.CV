@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\UserInfosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -26,3 +28,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::post('/login', [Auth::class, 'login']);
     });
 });
+
+Route::resource('/user-infos', UserInfosController::class)->except("edit","create");
+Route::resource('/educations', EducationController::class)->except("edit","create");
+

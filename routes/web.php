@@ -19,3 +19,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return view('welcome');
     });
 });
+
+
