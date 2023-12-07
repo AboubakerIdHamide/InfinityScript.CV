@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\EducationController;
+use App\Http\Controllers\UserInfosController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,8 +30,11 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::resource('templates', TemplateController::class)->except(['create', 'edit']);
+        Route::resource('/user-infos', UserInfosController::class)->except("edit","create");
+        Route::resource('/educations', EducationController::class)->except("edit","create");
     });
 });
+
 
 
 Route::fallback(function () {

@@ -19,7 +19,3 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return view('welcome');
     });
 });
-
-Route::get("/test-email", function () {
-    
-});
