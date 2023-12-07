@@ -11,5 +11,9 @@ return [
 "end_date_required" =>"تاريخ الانتهاء مطلوب",
 "description_required" =>"الوصف مطلوب",
 "user_id_invalid" =>"معرف المستخدم غير صالح",
-"experiences_fetched" =>"تم جلب الخبرات"
+"experiences_fetched" =>"تم جلب الخبرات",
+"validation_error"=>"خطأ في التحقق من الصحة",
+"experience_not_fetched"=>"لم يتم جلب التجارب",
+"experience_not_updated"=>"لم يتم تحديث التجارب",
+"experience_not_deleted"=>"لم يتم حذف التجارب"
 ];
