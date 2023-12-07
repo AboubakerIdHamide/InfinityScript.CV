@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -29,5 +30,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::resource('/experiences', ExperienceController::class)->except([
          'edit', 'create'
+    ]);
+    Route::resource('/skills',SkillController::class)->except([
+        'edit', 'create'
     ]);
 });

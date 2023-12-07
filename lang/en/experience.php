@@ -11,5 +11,9 @@ return [
     "end_date_required" =>"End date is required",
     "description_required" =>"Description is required",
     "user_id_invalid" =>"User ID invalid",
-    "experiences_fetched" =>"Experiences fetched"
+    "experiences_fetched" =>"Experiences fetched",
+    "validation_error"=>"validation error",
+    "experience_not_fetched"=>"Experiences not fetched",
+    "experience_not_updated"=>"Experiences not updated",
+    "experience_not_deleted"=>"Experiences not deleted",
 ];
