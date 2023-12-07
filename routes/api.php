@@ -4,9 +4,9 @@ use App\Http\Controllers\Auth;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserInfosController;
 use App\Http\Controllers\TemplateController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +29,11 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     });
     
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::resource('templates', TemplateController::class)->except(['create', 'edit']);
-        Route::resource('/user-infos', UserInfosController::class)->except("edit","create");
-        Route::resource('/educations', EducationController::class)->except("edit","create");
+        Route::resource('/templates', TemplateController::class)->except(['create', 'edit']);
+        Route::resource('/user-infos', UserInfosController::class)->except(['edit', 'create']);
+        Route::resource('/educations', EducationController::class)->except(['edit', 'create']);
+        Route::resource('/experiences', ExperienceController::class)->except(['edit', 'create']);
+        Route::resource('/skills', SkillController::class)->except(['edit', 'create']);
     });
 });
 
