@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CvRequest;
 
 class CvController extends Controller
 {
-    //
+    public function download(CvRequest $request){
+        
+    }
 }

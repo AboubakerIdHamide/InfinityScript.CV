@@ -15,5 +15,9 @@ return [
     "biography_required"    => "السيرة الذاتية مطلوبة",
     "user_not_exists"       => "المستخدم غير موجود",
     "validation_error"      => "خطأ في التحقق",
-    "user_infos_store"      => "تمت إضافة المستخدم بنجاح"
+    "user_infos_store"      => "تمت إضافة المستخدم بنجاح",
+    "picture_image"         =>"يجب أن تكون الصورة صورة",
+    "picture_invalid_type"  => "يجب أن تكون الصورة jpeg ، png ، jpg ، gif",
+    "picture_max_size"      => "يجب ألا يتجاوز حجم الصورة 2048",
+    "error_uploading_file"  => "خطأ في تحميل الملف"
 ];

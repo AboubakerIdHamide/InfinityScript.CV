@@ -32,7 +32,7 @@ class EducationController extends Controller
         $education = Education::create($data);
         return response()->json([
             "success" => true,
-            "message" => __("education.educaton_store"),
+            "message" => __("education.education_store"),
             "data" => [
                 "educations"=>$education,
             ],

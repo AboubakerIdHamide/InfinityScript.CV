@@ -16,5 +16,9 @@ return [
     "biography_required"=> "Biography is required",
     "user_not_exists"=> "User not exists",
     "validation_error"=> "Validation error",
-    "user_infos_store"=> "User add success"
+    "user_infos_store"=> "User add success",
+    "picture_image"=> "Picture must be an image",
+    "picture_invalid_type"=> "Picture must be jpeg,png,jpg,gif",
+    "picture_max_size"=> "Picture max size is 2048",
+    "error_uploading_file"=> "Error uploading file",
 ];

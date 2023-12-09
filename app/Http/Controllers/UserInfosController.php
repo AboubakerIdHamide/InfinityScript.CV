@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserInfosRequest;
 use App\Models\UserInfos;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class UserInfosController extends Controller
 {
@@ -30,6 +31,17 @@ class UserInfosController extends Controller
     public function store(UserInfosRequest $request)
     {
         $data = $request->validated();
+        try {
+            if ($request->hasFile('picture')) {
+                $data['picture'] = $request->file('picture')->store('public/pictures');
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => __("user_infos.error_uploading_file"),
+                'data' => $e->getMessage(),
+            ]);
+        }
         $user_info = UserInfos::create($data);
         return response()->json([
             "success" => true,
@@ -64,6 +76,17 @@ class UserInfosController extends Controller
         $data = $request->validated();
         $user_info = UserInfos::find($id);
         if($user_info){
+            try {
+                if ($request->hasFile('picture')) {
+                    Storage::delete($user_info->picture);
+                    $data['picture'] = $request->file('picture')->store('public/pictures');
+                }
+            } catch (\Exception $e) {
+                return response()->json([
+                    'success' => false,
+                    'message' => __("user_infos.error_uploading_file"),
+                ]);
+            }
             $user_info->update($data);
             return response()->json([
                 "success" => true,
@@ -86,20 +109,29 @@ class UserInfosController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        $deleted = UserInfos::destroy($id);
-        if($deleted)
-        {
-            return response()->json([
-                "success" => true,
-                "message" => __("user_infos.delete_success"),
-                "data" => [
-                    "deleted"=>$deleted,
-                    ],
-            ], 200);
-        }
-        else
-        {
+    {   
+        $user_info = UserInfos::find($id);
+        try{
+            Storage::delete($user_info->picture);
+            $deleted = $user_info->delete();
+            if($deleted){
+                return response()->json([
+                    "success" => true,
+                    "message" => __("user_infos.delete_success"),
+                    "data" => [
+                        "deleted"=>$deleted,
+                        ],
+                ], 200);
+            }else{
+                return response()->json([
+                    "success" => false,
+                    "message" => __("user_infos.delete_erreur"),
+                    "data" => [
+                        "deleted"=>$deleted,
+                        ],
+                ], 200);
+            }
+        }catch(Exception $e){
             return response()->json([
                 "success" => false,
                 "message" => __("user_infos.delete_erreur"),

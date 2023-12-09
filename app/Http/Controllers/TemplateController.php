@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller

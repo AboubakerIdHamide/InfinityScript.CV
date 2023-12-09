@@ -23,13 +23,14 @@ class UserInfosRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isStore = $this->method() == "POST";
         return [
             "first_name" => "required",
             "last_name"=> "required",
             "phone"=> "required|numeric",
             "address"=> "required",
             "proffesion"=> "required",
-            "picture"=> "required",
+            "picture" => $isStore ? "required|image|mimes:jpeg,png,jpg,gif|max:2048":"nullable",
             "biography"=> "required",
             "linkedin_url"=> "nullable",
             "website_url"=> "nullable",
@@ -53,6 +54,9 @@ class UserInfosRequest extends FormRequest
             "address.required"=> __("user_infos.address_required"),
             "proffesion.required"=> __("user_infos.proffesion_required"),
             "picture.required"=> __("user_infos.picture_required"),
+            "picture.image"=> __("user_infos.picture_image"),
+            "picture.mimes"=> __("user_infos.picture_invalid_type"),
+            "picture.max"=> __("user_infos.picture_max_size"),
             "biography.required"=> __("user_infos.biography_required"),
             "user_id.exists"=> __("user_infos.user_not_exists"),
         ];

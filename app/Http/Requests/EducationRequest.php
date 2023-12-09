@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class EducationRequest extends FormRequest
 {
@@ -48,5 +50,24 @@ class EducationRequest extends FormRequest
             "description.required"=> __("education.description_required"),
             "user_id.exists"=> __("education.user_not_exists"),
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                "success" => false,
+                "message" => __("user_infos.validation_error"),
+                "data" => $validator->errors(),
+            ]),
+            422
+        );
     }
 }
