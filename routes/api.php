@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\CvController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserInfosController;
 use App\Http\Controllers\TemplateController;
@@ -37,7 +38,7 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     });
 });
 
-
+Route::post("/download", [CvController::class, "download"]);
 
 Route::fallback(function () {
     return response()->json([
