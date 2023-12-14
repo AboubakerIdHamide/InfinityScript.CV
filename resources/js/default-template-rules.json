@@ -1,0 +1,31 @@
+{
+    "first_name_lengh": "11",
+    "last_name_lengh": "11",
+    "email_lengh": "24",
+    "phone_lengh": "24",
+    "address_lengh": "24",
+    "website_url_length": "35",
+    "linkedin_url_length": "35",
+    "biography_length": "360",
+    "skills": {
+        "skills_length": "15",
+        "hobbies_length": "15",
+        "languages_length": "15",
+        "skills_count": "3",
+        "hobbies_count": "3",
+        "languages_count": "3"
+    },
+    "educations": {
+        "degree_length": "20",
+        "school_length": "20",
+        "description_length": "70",
+        "educations_count": "2"
+    },
+    "experiences":{
+        "title_length": "70",
+        "company_length": "30",
+        "description_length": "70",
+        "location_length":"30",
+        "experiences_count": "2"
+    }
+}

@@ -35,10 +35,10 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
         Route::resource('/educations', EducationController::class)->except(['edit', 'create']);
         Route::resource('/experiences', ExperienceController::class)->except(['edit', 'create']);
         Route::resource('/skills', SkillController::class)->except(['edit', 'create']);
+        Route::post("/download", [CvController::class, "download"]);
     });
 });
 
-Route::post("/download", [CvController::class, "download"]);
 
 Route::fallback(function () {
     return response()->json([
