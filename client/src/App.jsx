@@ -1,7 +1,13 @@
 // import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './views/HomePage';
-import { Dashboard } from './views/Dashboard';
+import {
+  DashboardLayout,
+  Templates,
+  MyResumes,
+  CreateResume,
+  Profile
+} from './views/Dashboard';
 import {
   ForgotPassword,
   Login,
@@ -15,12 +21,19 @@ function App() {
     <>
       <Routes>
         <Route path='/*' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/verify-email' element={<VerifyEmail/>}/>
-        <Route path='/forgot-password' element={<ForgotPassword/>}/>
-        <Route path='/reset-password' element={<ResetPassword/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='/auth'>
+          <Route path='*' element={<Login/>}/>
+          <Route path='register' element={<Register/>}/>
+          <Route path='verify-email' element={<VerifyEmail/>}/>
+          <Route path='forgot-password' element={<ForgotPassword/>}/>
+          <Route path='reset-password' element={<ResetPassword/>}/>
+        </Route>
+        <Route path='/dashboard' element={<DashboardLayout/>}>
+            <Route path='' element={<Templates/>}/>
+            <Route path='my-resumes' element={<MyResumes/>}/>
+            <Route path='create-resume' element={<CreateResume/>}/>
+            <Route path='profile' element={<Profile/>}/>
+        </Route>
       </Routes>
     </>
   )

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CvController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -19,3 +20,4 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return view('welcome');
     });
 });
+Route::get('/demo', [CvController::class, "demo"]);
