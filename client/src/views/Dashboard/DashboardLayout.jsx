@@ -9,7 +9,7 @@ const Dashboard = () => {
       <NavBar setIsOpen={setIsOpen} isOpen={isOpen} />
     <div className="flex w-100 h-[90vh]">
         <SideBar isOpen={isOpen} />
-        <div className={`${isOpen ? "translate-x-64 w-[calc(100vw-16rem)]" : ""} bg-gentle-sky p-[20px] w-full`}>
+        <div className={`${isOpen ? "translate-x-[200px] w-[calc(100vw-200px)]" : "w-full"} bg-gentle-sky p-[20px]`}>
           {<Outlet/>}
         </div>
     </div>

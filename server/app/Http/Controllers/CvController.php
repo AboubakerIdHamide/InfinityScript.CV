@@ -8,7 +8,6 @@ use App\Models\Resume;
 use App\Models\Template;
 use App\Models\User;
 use Exception;
-use stdClass;
 
 class CvController extends Controller
 {
@@ -52,24 +51,5 @@ class CvController extends Controller
                 "data" => $e->getMessage(),
             ], 422);
         }
-    }
-
-    public function demo(){
-        $user = User::find(1);
-        $template = Template::find(1);
-        $informations = $user->userinfos;
-        $view_data = [
-            "user" => $user,
-            "informations" => $informations,
-            "skills" => [
-                "skills" => explode(",", $user->skills->skills),
-                "hobbies" => explode(",", $user->skills->hobbies),
-                "languages" => json_decode($user->skills->languages),
-            ],
-            "educations" => $user->educations,
-            "experiences" => $user->experiences,
-        ];
-        
-        return view($template->url, $view_data);
     }
 }
