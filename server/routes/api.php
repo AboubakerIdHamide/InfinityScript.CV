@@ -7,6 +7,7 @@ use App\Http\Controllers\UserInfosController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\SkillController;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     Route::group(['prefix' => 'auth'], function () {

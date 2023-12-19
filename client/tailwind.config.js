@@ -11,7 +11,7 @@ export default {
       "royal-purple": "#7752FE",
       "serene-lavender": "#8E8FFA",
       "gentle-sky": "#C2D9FF",
-    },
+    }
   },
   plugins: [require("flowbite/plugin")],
 };
