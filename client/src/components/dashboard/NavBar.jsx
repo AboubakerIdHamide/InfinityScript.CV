@@ -1,12 +1,18 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { languages } from '../../utils/constants';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { setLanguage } from "../../store/reducers/global";
 
 const NavBar = ({ setIsOpen, isOpen }) => {
   const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+
   const changeLanguage = (e) => {
     i18n.changeLanguage(e.target.value);
+    dispatch(setLanguage(e.target.value));
   };
+
   return (
     <Navbar fluid rounded className='h-[10vh]'>
       <Navbar.Brand href="/">
@@ -14,7 +20,7 @@ const NavBar = ({ setIsOpen, isOpen }) => {
         <span className="self-center text-royal-purple whitespace-nowrap text-xl font-semibold dark:text-white hidden sm:inline">InfinityScript.CV</span>
       </Navbar.Brand>
       <div className="flex">
-        <select onChange={changeLanguage} className="font-mono text-royal-purple font-bold w-[106px] text-sm me-2 border-0 focus:ring-0">
+        <select value={i18n.language} onChange={changeLanguage} className="font-mono text-royal-purple font-bold w-[106px] text-sm me-2 border-0 focus:ring-0">
           {languages.map((language, index) =>  (
                 <option className='p-[10px]' key={index} value={language.code}>{language.name}</option>
             )

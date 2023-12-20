@@ -31,7 +31,7 @@ function App() {
         <Route path='/dashboard' element={<DashboardLayout/>}>
             <Route path='' element={<Templates/>}/>
             <Route path='my-resumes' element={<MyResumes/>}/>
-            <Route path='create-resume' element={<CreateResume/>}/>
+            <Route path='create-resume/:template_id?' element={<CreateResume/>}/>
             <Route path='profile' element={<Profile/>}/>
         </Route>
       </Routes>

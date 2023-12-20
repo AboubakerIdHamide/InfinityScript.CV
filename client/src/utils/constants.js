@@ -2,7 +2,7 @@ import dashboard_en from "../lang/en/dashboard.json";
 import dashboard_ar from "../lang/ar/dashboard.json";
 
 // .ENV
-export const API_URL = import.meta.env.VITE_API_URL;
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 // Language Constants
 export const languages = [
