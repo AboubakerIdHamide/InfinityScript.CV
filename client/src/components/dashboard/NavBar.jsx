@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar, Select } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { languages } from '../../utils/constants';
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +11,7 @@ const NavBar = ({ setIsOpen, isOpen }) => {
     <Navbar fluid rounded className='h-[10vh]'>
       <Navbar.Brand href="/">
         <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9" alt="InfinityScript.CV" />
-        <span className="self-center text-royal-purple whitespace-nowrap text-xl font-semibold dark:text-white">InfinityScript.CV</span>
+        <span className="self-center text-royal-purple whitespace-nowrap text-xl font-semibold dark:text-white hidden sm:inline">InfinityScript.CV</span>
       </Navbar.Brand>
       <div className="flex">
         <select onChange={changeLanguage} className="font-mono text-royal-purple font-bold w-[106px] text-sm me-2 border-0 focus:ring-0">

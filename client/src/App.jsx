@@ -29,7 +29,7 @@ function App() {
           <Route path='reset-password' element={<ResetPassword/>}/>
         </Route>
         <Route path='/dashboard' element={<DashboardLayout/>}>
-            <Route path='' element={<Templates/>}/>
+            <Route path='*' element={<Templates/>}/>
             <Route path='my-resumes' element={<MyResumes/>}/>
             <Route path='create-resume' element={<CreateResume/>}/>
             <Route path='profile' element={<Profile/>}/>
