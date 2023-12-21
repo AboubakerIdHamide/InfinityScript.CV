@@ -1,8 +1,11 @@
 // import React from 'react'
+import { useParams } from "react-router-dom";
+
 
 const CreateResume = () => {
+  const { template_id } = useParams();
   return (
-    <div>CreateResume</div>
+    <div>CreateResume : {template_id}</div>
   )
 }
 

@@ -6,11 +6,11 @@ import { LuFileStack } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { useTranslation } from 'react-i18next';
 
-const SideBar = ({ isOpen }) => {
+const SideBar = ({ isOpen, isPhone }) => {
     const { t } = useTranslation();
 
     return (
-        <aside id="default-sidebar" className={`fixed top-[10vh] left-0 w-[200px] h-[90vh] transition-transform -translate-x-full ${isOpen ? "translate-x-0" : ""}`} aria-label="Sidebar">
+        <aside id="default-sidebar" className={`fixed top-[10vh] left-0 ${isPhone ? "w-full" : "w-[200px]"} h-[90vh] transition-transform -translate-x-full ${isOpen ? "translate-x-0" : ""}`} aria-label="Sidebar">
         <div className="h-full px-3 py-4 overflow-y-auto bg-royal-purple">
             <ul className="space-y-2 font-medium py-2">
             <Link to="">

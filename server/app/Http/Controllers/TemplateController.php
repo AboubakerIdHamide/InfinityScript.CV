@@ -16,6 +16,9 @@ class TemplateController extends Controller
     {
         try{
             $templates = Template::all();
+            foreach ($templates as $template) {
+                $template->preview_img = str_replace('public', 'storage', $template->preview_img);
+            }
             return response()->json([
                 'success' => true,
                 'message' => __("template.retrieved_successfully"),

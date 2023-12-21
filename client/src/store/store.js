@@ -11,11 +11,16 @@ import {
   REGISTER,
 } from "redux-persist";
 import authReducer from "./reducers/auth";
+import globalReducer from "./reducers/global";
 
 const persistConfig = { key: "root", storage, version: 1 };
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedGlobalReducer = persistReducer(persistConfig, globalReducer);
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    auth: persistedAuthReducer,
+    global: persistedGlobalReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
