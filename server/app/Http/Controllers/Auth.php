@@ -97,6 +97,13 @@ class Auth extends Controller
         ], 200);
     }
 
+    function verifyToken(){
+        return response()->json([
+            "success" => true,
+            "message" => __("auth.token_valid"),
+        ], 200);
+    }
+
     function resetPassword(ResetPasswordRequest $request){
         $otpObj= $this->otp->validate($request->email, $request->otp);
         if(!$otpObj->status){
@@ -117,6 +124,13 @@ class Auth extends Controller
                 "user" => $user,
                 "token" => $token
             ],
+        ], 200);
+    }
+
+    function notAuthenticated(){
+        return response()->json([
+            "success" => false,
+            "message" => __("auth.unautorized")
         ], 200);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\UserInfosController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/register', [Auth::class, 'register']);
@@ -32,6 +29,11 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
         Route::post('/verifiy-email', [Auth::class, 'verifyEmail'])->middleware('auth:sanctum');
         Route::post('/forgot-password', [Auth::class, 'forgotPassword']);
         Route::post('/reset-password', [Auth::class, 'resetPassword']);
+        Route::get('/verify-token', [Auth::class, 'verifyToken'])->middleware('auth:sanctum');
+    });
+
+    Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum'], function () {
+        Route::get('{id}/resumes', [UsersController::class, 'getResumes']);
     });
     
     Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -44,6 +46,8 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     });
 });
 
+
+Route::get("not_authenticated", [Auth::class, 'notAuthenticated'])->name('not_authenticated');
 
 Route::fallback(function () {
     return response()->json([
