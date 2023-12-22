@@ -13,7 +13,7 @@ const MyResumes = () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/resumes`).then((res)=>res.data.data);
   });
 
-  const mutate = useMutation((data) => { 
+  const mutation = useMutation((data) => { 
     return axios.post(`${SERVER_URL}/api/${global.lang}/download`, data, {
       responseType: 'blob',
       onDownloadProgress: (progressEvent) => {
@@ -23,8 +23,8 @@ const MyResumes = () => {
     }).then((res)=>res.data, );
   });
 
-  if (mutate.data) {   
-    const blobUrl = window.URL.createObjectURL(new Blob([mutate.data]));
+  if (mutation.data) {   
+    const blobUrl = window.URL.createObjectURL(new Blob([mutation.data]));
     const link = document.createElement('a');
     link.href = blobUrl;
     link.setAttribute('download', `${auth.user.email}.pdf`);
@@ -44,9 +44,9 @@ const MyResumes = () => {
             <span className="absolute z-[-1] top-0 left-0 bg-[#7752FE77] text-white rounded-lg h-full" style={{width:`${progress}%`}}></span>
             <span>{ template.name }</span>
             <button
-              disabled={mutate.isLoading}
-              onClick={() => mutate.mutate({ template_id: template.id, user_id: auth.user.id })}
-              className={`${mutate.isLoading ?"text-[gray]" : "text-royal-purple"} rounded-md bg-slate-300 hover:bg-slate-600 hover:text-slate-200 duration-300 p-2`}>
+              disabled={mutation.isLoading}
+              onClick={() => mutation.mutate({ template_id: template.id, user_id: auth.user.id })}
+              className={`${mutation.isLoading ?"text-[gray]" : "text-royal-purple"} rounded-md bg-slate-300 hover:bg-slate-600 hover:text-slate-200 duration-300 p-2`}>
                 <HiOutlineCloudDownload className="text-xl" />
             </button>
           </div>

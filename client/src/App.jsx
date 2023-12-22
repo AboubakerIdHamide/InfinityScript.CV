@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './views/HomePage';
+import { Toaster } from 'react-hot-toast';
 import {
   DashboardLayout,
   Templates,
@@ -19,6 +20,7 @@ import {
 function App() {
   return (
     <>
+      <Toaster/>
       <Routes>
         <Route path='/*' element={<Home/>}/>
         <Route path='/auth'>
