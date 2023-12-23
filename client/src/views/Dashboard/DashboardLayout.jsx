@@ -11,6 +11,7 @@ import { Loading } from "../../components/common";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isPhone, setIsPhone] = useState(false);
+  const [picture, setPicture] = useState("");
   const { lang } = useSelector(state => state.global);
   const { i18n } = useTranslation();
   const { auth, global } = useSelector(state => state);
@@ -24,29 +25,32 @@ const Dashboard = () => {
     }
     i18n.changeLanguage(lang);
   }, []);
-
-  if (!auth.token) {
-    navigate("/auth/login");
-  }
   
-  const { isLoading, error, data } = useQuery("verify-token", () => {
-    return axios.get(`${SERVER_URL}/api/${global.lang}/auth/verify-token`, {
+  const { isLoading } = useQuery("verify-token", () => {
+    return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/picture`, {
       headers: { Authorization: `Bearer ${auth.token}` }
     }).then((res)=>res.data);
-  });
-
-  if (error) {
-    delete axios.defaults.headers.common["Authorization"];
-    navigate("/auth/login");
-  }
-
-  if (data?.success) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${auth.token}`;
-  }
+  },
+    {
+      onError: () => { 
+        delete axios.defaults.headers.common["Authorization"];
+        navigate("/auth/login");
+      },
+      onSuccess: (data) => {
+        if (data.success) {
+          setPicture(`${SERVER_URL}/${data.data.picture}`);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${auth.token}`;
+        } else {
+          delete axios.defaults.headers.common["Authorization"];
+          navigate("/auth/login");
+        }
+      }
+    }
+  );
 
   return (
     <>
-      <NavBar setIsOpen={setIsOpen} isOpen={isOpen} />
+      <NavBar setIsOpen={setIsOpen} isOpen={isOpen} picture={picture} />
       <div className="flex w-100 h-[90vh]">
           <SideBar isOpen={isOpen} isPhone={isPhone} />
           <div className={`${isOpen ? "translate-x-[200px] w-[calc(100vw-200px)]" : "w-full"} bg-gentle-sky p-[20px] ${isPhone && isOpen ? "hidden" : null}`}>

@@ -1,19 +1,63 @@
-// import React from 'react'
-
-'use client';
-import { EmailInput } from "../../components/authPages";
 import { Button } from 'flowbite-react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMutation } from 'react-query';
+import axios from 'axios';
+import { SERVER_URL } from '../../utils/constants';
+import toast from 'react-hot-toast';
+import { setLogin } from '../../store/reducers/auth';
+import { Error } from '../../components/common';
+import { useNavigate } from 'react-router-dom';
+import {
+  Logo,
+  OtpInput
+} from "../../components/authPages";
 
 const VerifyEmail = () => {
+  const [otp, setOtp] = useState("");
+  const { global, auth } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const mutation = useMutation(async (data) => { 
+    return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/verifiy-email`, data).then((res)=>res.data);
+  }, {
+    onSuccess: (data) => {
+      const options = { duration: 2000 };
+      if (data.success) {
+        toast.success(data.message, options);
+        dispatch(setLogin(data.data));
+        navigate("/dashboard/new");
+      } else {
+        let errors = data.data;
+        if (errors) {          
+          Object.keys(errors).forEach((key) => {
+            toast.error(errors[key][0], options);
+          });
+        } else {
+          toast.error(data.message, options);          
+        }
+        setOtp("");
+      }
+    }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ email:auth.user.email, otp});
+  }
+
   return (
     <>
     <div className="bg-royal-purple h-screen flex flex-col gap-8 justify-center items-center flex-col bg-[url('/BG.png')] bg-cover bg-no-repeat">
-      <h1 className='text-white text-2xl font-bold'>LOGO</h1>
+      <Logo/>
       <form className="flex flex-col gap-5 w-3/4 sm:w-1/3 md:w-4/7 lg:w-1/4 ">
-        
-        <EmailInput/>
-
-        <Button type="submit" color='light' className='text-[#190482] '>VERIFY</Button>
+        {mutation.error ? (<Error error={mutation.error}/>): (
+          <>
+            <OtpInput otp={otp} setOtp={setOtp}/>
+            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>VERIFY</Button>
+          </>
+        )}
       </form>
     </div>
     </>

@@ -26,14 +26,14 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/register', [Auth::class, 'register']);
         Route::post('/login', [Auth::class, 'login']);
-        Route::post('/verifiy-email', [Auth::class, 'verifyEmail'])->middleware('auth:sanctum');
+        Route::post('/verifiy-email', [Auth::class, 'verifyEmail']);
         Route::post('/forgot-password', [Auth::class, 'forgotPassword']);
         Route::post('/reset-password', [Auth::class, 'resetPassword']);
-        Route::get('/verify-token', [Auth::class, 'verifyToken'])->middleware('auth:sanctum');
     });
 
     Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum'], function () {
         Route::get('{id}/resumes', [UsersController::class, 'getResumes']);
+        Route::get('{id}/picture', [UsersController::class, 'getPicture']);
     });
     
     Route::group(['middleware' => 'auth:sanctum'], function () {

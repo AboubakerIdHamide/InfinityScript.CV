@@ -8,7 +8,7 @@ return [
     "password_required" => "كلمة المرور مطلوبة",
     "password_min" => "يجب أن تكون كلمة المرور على الأقل 6 أحرف",
     "password_confirmed" => "تأكيد كلمة المرور لا يتطابق",
-    "register_success" => "مرحبًا بك في عالمنا السحري",
+    "register_success" => "تحقق من صندوق الوارد أو مجلد البريد العشوائي الخاص بك للحصول على رمز OTP!",
     "validation_error" => "خطأ في التحقق",
     "login_success" => "مرحبًا بك في المنزل",
     "invalide_credentials" => "بيانات الاعتماد غير صالحة",

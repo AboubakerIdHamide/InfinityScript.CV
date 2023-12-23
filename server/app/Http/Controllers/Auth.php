@@ -57,7 +57,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
     }
 
@@ -68,7 +68,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
         $user = User::where('email', $request->email)->first();
         $user->email_verified_at= now();
@@ -97,13 +97,6 @@ class Auth extends Controller
         ], 200);
     }
 
-    function verifyToken(){
-        return response()->json([
-            "success" => true,
-            "message" => __("auth.token_valid"),
-        ], 200);
-    }
-
     function resetPassword(ResetPasswordRequest $request){
         $otpObj= $this->otp->validate($request->email, $request->otp);
         if(!$otpObj->status){
@@ -111,7 +104,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
         $user = User::where('email', $request->email)->first();
         $user->password= bcrypt($request->password);

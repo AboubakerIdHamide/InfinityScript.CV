@@ -22,24 +22,32 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const mutation = useMutation((data) => { 
-    return axios.post(`${SERVER_URL}/api/${global.lang}/auth/login`, data).then((res)=>res.data);
+  const mutation = useMutation(async (data) => { 
+    return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/login`, data).then((res)=>res.data);
+  }, {
+    onSuccess: (data) => {
+      const options = { duration: 2000 };
+      if (data.success) {
+        toast.success(data.message, options);
+        dispatch(setLogin(data.data));
+        navigate("/dashboard/new");
+      } else {
+        let errors = data.data;
+        if (errors) {          
+          Object.keys(errors).forEach((key) => {
+            toast.error(errors[key][0], options);
+          });
+        } else {
+          toast.error(data.message, options);          
+        }
+        setPassword("");
+      }
+    }
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate({ email, password });
-  }
-
-  if (mutation.data && !mutation.isLoading ) {
-    console.log(mutation.data.data);
-    if (mutation.data.success) {
-      toast.success(mutation.data.message, { duration: 2000 });
-      dispatch(setLogin(mutation.data.data));
-      navigate("/dashboard/new");
-    } else {
-      toast.error(mutation.data.message, { duration:2000 });
-    }
   }
 
   return (
@@ -59,7 +67,6 @@ const Login = () => {
               <span className='text-white text-center '>Don`t have an account ? <br/>Sign Up from <Link to="register" className='underline font-bold'>here</Link>.</span>
             </>
         )}
-        
       </form>
     </div>
     </>
