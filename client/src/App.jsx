@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './views/HomePage';
 import { Toaster } from 'react-hot-toast';
