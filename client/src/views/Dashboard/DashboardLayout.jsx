@@ -27,12 +27,12 @@ const Dashboard = () => {
   return (
     <>
       <NavBar setIsOpen={setIsOpen} isOpen={isOpen} />
-    <div className="flex w-100 h-[90vh]">
-        <SideBar isOpen={isOpen} isPhone={isPhone} />
-        <div className={`${isOpen ? "translate-x-[200px] w-[calc(100vw-200px)]" : "w-full"} bg-gentle-sky p-[20px] ${isPhone && isOpen ? "hidden" : null}`}>
-          {<Outlet/>}
-        </div>
-    </div>
+      <div className="flex w-100 h-[90vh]">
+          <SideBar isOpen={isOpen} isPhone={isPhone} />
+          <div className={`${isOpen ? "translate-x-[200px] w-[calc(100vw-200px)]" : "w-full"} bg-gentle-sky p-[20px] ${isPhone && isOpen ? "hidden" : null}`}>
+            {<Outlet/>}
+          </div>
+      </div>
     </>
   )
 }
