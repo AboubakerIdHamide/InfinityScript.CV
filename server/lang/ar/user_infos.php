@@ -2,6 +2,7 @@
 
 return [
     "user_infos_fetched"    => "تم استرجاع معلومات المستخدم",
+    "user_infos_not_fetched"=> "فشل استرجاع معلومات المستخدم",
     "delete_success"        => "تم حذف معلومات المستخدم بنجاح",
     "delete_erreur"         => "فشل حذف معلومات المستخدم",
     "user_infos_update"     => "تم تحديث معلومات المستخدم",
@@ -19,5 +20,5 @@ return [
     "picture_image"         =>"يجب أن تكون الصورة صورة",
     "picture_invalid_type"  => "يجب أن تكون الصورة jpeg ، png ، jpg ، gif",
     "picture_max_size"      => "يجب ألا يتجاوز حجم الصورة 2048",
-    "error_uploading_file"  => "خطأ في تحميل الملف"
+    "error_uploading_file"  => "خطأ في تحميل الملف",
 ];

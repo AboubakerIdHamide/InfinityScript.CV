@@ -2,5 +2,8 @@
   "new_templates" : "New Templates",
   "create_resume" : "Create Resume",
   "my_resumes" : "My Resumes",
-  "profile" : "Profile"
+  "profile" : "Profile",
+  "dont_have_resumes" : "You don't have any resumes yet. Create it one now!",
+  "settings" : "Settings",
+  "logout" : "Logout"
 }

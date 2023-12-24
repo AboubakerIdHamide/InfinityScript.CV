@@ -61,7 +61,7 @@ class VerifyEmailRequest extends FormRequest
                 "success" => false,
                 "message" => __("auth.validation_error"),
                 "data" => $validator->errors(),
-            ], 422)
+            ], 200)
         );
     }
 }

@@ -57,7 +57,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
     }
 
@@ -68,7 +68,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
         $user = User::where('email', $request->email)->first();
         $user->email_verified_at= now();
@@ -104,7 +104,7 @@ class Auth extends Controller
                 "success" => false,
                 "message" => __("auth.invalide_credentials"),
                 "data" => null,
-            ], 422);
+            ], 200);
         }
         $user = User::where('email', $request->email)->first();
         $user->password= bcrypt($request->password);
@@ -117,6 +117,13 @@ class Auth extends Controller
                 "user" => $user,
                 "token" => $token
             ],
+        ], 200);
+    }
+
+    function notAuthenticated(){
+        return response()->json([
+            "success" => false,
+            "message" => __("auth.unautorized")
         ], 200);
     }
 }

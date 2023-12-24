@@ -8,7 +8,7 @@ return [
     "password_required"=>"Password is required",
     "password_min"=>"Password must be at least 6 characters",
     "password_confirmed"=>"Password confirmation does not match",
-    "register_success"=>"Welcome to our magic world",
+    "register_success"=>"Check your inbox or spam folder for the OTP code !",
     "validation_error"=>"Validation error",
     "login_success"=>"Welcome Home",
     "invalide_credentials"=>"Invalide credentials",
@@ -24,4 +24,6 @@ return [
     "otp_sended"=>"Check your inbox or spam folder for the OTP code !",
     "password_reseted"=>"Password reseted successfully",
     "not_found"=>"Not found",
+    "unautorized" => "Invalide Token !",
+    "token_valid" => "Token is valid",
 ];

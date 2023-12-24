@@ -1,10 +1,10 @@
 import { HiOutlineExternalLink } from "react-icons/hi";
-import { VscBracketError } from "react-icons/vsc";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { SERVER_URL } from "../../utils/constants";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Error, Loading } from "../../components/common";
 
 const Templates = () => {
   const { global } = useSelector(state => state);
@@ -12,19 +12,8 @@ const Templates = () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/templates`).then((res)=>res.data.data);
   });
 
-  if (isLoading) return (
-    <div className="bg-white w-full h-full rounded-[10px] p-4 flex justify-center items-center">
-      <img src="/logo-no-background.png" className="animate-ping w-[150px]" alt="logo" />
-    </div>
-  );
-
-  if (error) return (
-    <div className="bg-white w-full h-full rounded-[10px] p-4 flex flex-col justify-center items-center">
-      <VscBracketError className="text-[80px] mb-4 text-royal-purple"/>
-      <p className="text-royale-purple text-lg text-royal-purple">Error : {error.message}</p>
-    </div>
-  );
-
+  if (isLoading) return <Loading />;
+  if (error) return <Error error={error} />;
   return (
     <div className="bg-white w-full h-full rounded-[10px] p-4 flex justify-evenly gap-[20px] flex-wrap overflow-y-scroll">
       {data.map((template) => (
