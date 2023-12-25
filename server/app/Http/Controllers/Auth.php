@@ -26,14 +26,12 @@ class Auth extends Controller
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
         $new_user= User::create($data);
-        $token = $new_user->createToken('auth_token')->plainTextToken;
         $new_user->notify(new RegisterOTP());
         return response()->json([
                 "success" => true,
                 "message" => __("auth.register_success"),
                 "data" => [
                     "user"=>$new_user,
-                    "token"=>$token
                 ],
         ], 200);
     }

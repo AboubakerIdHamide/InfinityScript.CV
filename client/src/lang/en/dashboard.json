@@ -10,5 +10,7 @@
   "biography" : "Biography",
   "education" : "Education",
   "experience" : "Experience",
-  "skills" : "Skills"
+  "skills" : "Skills",
+  "step": "Step",
+  "of": "of"
 }

@@ -16,6 +16,13 @@ import {
   VerifyEmail,
   ResetPassword
 } from './views/AuthPages';
+import {
+  PersonalInfo,
+  Biography,
+  Skills,
+  Educations,
+  Experiences,
+} from "./components/dashboard/createResume";
 
 function App() {
   const { auth } = useSelector(state => state);
@@ -35,7 +42,13 @@ function App() {
         <Route path='/dashboard' element={auth.token ? <DashboardLayout/> : <Navigate to="/auth/login"/>}>
             <Route path='*' element={<Templates/>}/>
             <Route path='my-resumes' element={<MyResumes/>}/>
-            <Route path='create-resume/:template_id?' element={<CreateResume/>}/>
+            <Route path='create-resume/:template_id?' element={<CreateResume />}>
+              <Route path='personal-info' element={<PersonalInfo/>}/>
+              <Route path='biography' element={<Biography/>}/>
+              <Route path='skills' element={<Skills/>}/>
+              <Route path='educations' element={<Educations/>}/>
+              <Route path='experiences' element={<Experiences/>}/>
+            </Route>
             <Route path='profile' element={<Profile/>}/>
         </Route>
       </Routes>

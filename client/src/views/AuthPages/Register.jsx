@@ -31,7 +31,7 @@ const Register = () => {
       const options = { duration: 2000 };
       if (data.success) {
         toast.success(data.message, { duration: 10000 });
-        dispatch(setLogin(data.data));
+        dispatch(setLogin({user : data.data.user, token : null}));
         navigate("/auth/verify-email");
       } else {
         let errors = data.data;
