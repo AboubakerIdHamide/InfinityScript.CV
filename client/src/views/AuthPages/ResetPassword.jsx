@@ -8,17 +8,21 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Error } from '../../components/common';
 import { setLogin } from '../../store/reducers/auth';
+import { useTranslation } from 'react-i18next';
+import { AiOutlineLoading } from 'react-icons/ai';
 import {
   PasswordInput,
   PasswordConfirmationInput,
   Logo,
-  OtpInput
+  OtpInput,
+  Languages
 } from "../../components/authPages";
 
 const ResetPassword = () => {
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
   const [pwConfiramtion, setPwConfiramtion] = useState("");
+  const {t} = useTranslation();
 
   const { global, auth } = useSelector(state => state);
   const navigate = useNavigate();
@@ -68,10 +72,13 @@ const ResetPassword = () => {
             <OtpInput otp={otp} setOtp={setOtp}/>
             <PasswordInput password={password} setPassword={setPassword}/>
             <PasswordConfirmationInput pwConfiramtion={pwConfiramtion} setPwConfiramtion={setPwConfiramtion}/>
-            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>RESET</Button>
+            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>
+              {mutation.isLoading ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : t("auth.reset")}
+            </Button>
           </>
         )}
       </form>
+      <Languages/>
     </div>
     </>
   )

@@ -8,9 +8,12 @@ import toast from 'react-hot-toast';
 import { Error } from '../../components/common';
 import { useNavigate } from 'react-router-dom';
 import { setLogin } from '../../store/reducers/auth';
+import { useTranslation } from 'react-i18next';
+import { AiOutlineLoading } from 'react-icons/ai';
 import {
   EmailInput,
-  Logo
+  Logo,
+  Languages
 } from "../../components/authPages";
 
 const ForgotPassword = () => {
@@ -18,6 +21,7 @@ const ForgotPassword = () => {
   const { global } = useSelector(state => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   const mutation = useMutation(async (data) => { 
     return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/forgot-password`, data).then((res)=>res.data);
@@ -55,10 +59,13 @@ const ForgotPassword = () => {
         {mutation.error ? (<Error error={mutation.error}/>): (
           <>
             <EmailInput email={email} setEmail={setEmail} />
-            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>RESET PASSWORD</Button>
+            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>
+              {mutation.isLoading ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : t("auth.reset_password")}
+            </Button>
           </>
         )}
       </form>
+      <Languages/>
     </div>
     </>
   )

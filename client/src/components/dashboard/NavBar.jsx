@@ -14,14 +14,14 @@ const NavBar = ({ setIsOpen, isOpen, picture }) => {
   const { auth } = useSelector(state => state);
 
 
-  const changeLanguage = (e) => {
-    i18n.changeLanguage(e.target.value);
-    dispatch(setLanguage(e.target.value));
-  };
 
   const logout = () => {
     dispatch(setLogout());
     navigate("/auth/login");
+  };
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+    dispatch(setLanguage(e.target.value));
   };
 
   return (
