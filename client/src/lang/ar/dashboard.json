@@ -12,5 +12,14 @@
   "experience": "الخبرة",
   "skills": "المهارات",
   "step": "الخطوة",
-  "of": "من"
+  "of": "من",
+  "first_name": "الاسم الأول",
+  "last_name": "اسم العائلة",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "profession": "المهنة",
+  "address": "العنوان",
+  "linkedin_url": "رابط LinkedIn",
+  "website_url": "رابط الموقع الإلكتروني",
+  "click_to_upload": "انقر للتحميل أو اسحب وأسقط"
 }

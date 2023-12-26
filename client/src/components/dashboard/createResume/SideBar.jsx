@@ -14,7 +14,7 @@ const SideBar = () => {
     const inactivelink_style = "w-[80%] rounded-lg";
 
     return (
-        <div className="hidden basis-1/5 bg-royal-purple md:flex flex-col justify-start items-center">
+        <div className="hidden md:basis-1/5 bg-royal-purple md:flex flex-col justify-start items-center">
             <div className="p-4 mb-3">
                 <Logo />
             </div>
@@ -26,11 +26,11 @@ const SideBar = () => {
                 <TiDocumentText className="me-3"/>
                 <span>{t("dashboard.biography")}</span>
             </NavLink>
-            <NavLink to="skills" className={({isActive})=>`${link_style} ${isActive ? activelink_style: inactivelink_style}`}>
+            <NavLink to="educations" className={({isActive})=>`${link_style} ${isActive ? activelink_style: inactivelink_style}`}>
                 <FaBook  className="me-3"/>
                 <span>{t("dashboard.education")}</span>
             </NavLink>
-            <NavLink to="educations" className={({isActive})=>`${link_style} ${isActive ? activelink_style: inactivelink_style}`}>
+            <NavLink to="skills" className={({isActive})=>`${link_style} ${isActive ? activelink_style: inactivelink_style}`}>
                 <CiBoxList  className="me-3"/>
                 <span>{t("dashboard.skills")}</span>
             </NavLink>
