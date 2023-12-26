@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../store/reducers/auth";
 import { Error } from "../../components/common";
 import toast from "react-hot-toast";
+import { AiOutlineLoading } from 'react-icons/ai';
 import {
   EmailInput,
   PasswordInput,
-  CheckboxInput,
+  Languages,
   Logo
 } from "../../components/authPages";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +23,7 @@ const Login = () => {
   const { global } = useSelector(state => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const mutation = useMutation(async (data) => { 
     return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/login`, data).then((res)=>res.data);
@@ -51,7 +54,6 @@ const Login = () => {
   }
 
   return (
-    <>
     <div className="bg-[#7752FE] h-screen flex flex-col gap-8 justify-center items-center flex-col bg-[url('/BG.png')] bg-cover bg-no-repeat">
       <Logo/>
       <form className="flex flex-col gap-5 w-3/4 sm:w-1/3 md:w-4/7 lg:w-1/4 ">
@@ -60,16 +62,18 @@ const Login = () => {
               <EmailInput email={email} setEmail={setEmail} />
               <PasswordInput password={password} setPassword={setPassword} />
               <div className="flex justify-between">
-                <CheckboxInput/>
-                <Link to="forgot-password" className="text-white underline font-sans ms-2 text-sm font-medium">Forgot password?</Link>
+                <Link to="forgot-password" className="text-white underline font-sans ms-2 text-sm font-medium">{t("auth.forgot_password")}</Link>
               </div>
-              <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>LOGIN</Button>
-              <span className='text-white text-center '>Don`t have an account ? <br/>Sign Up from <Link to="register" className='underline font-bold'>here</Link>.</span>
+              <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>
+                {mutation.isLoading ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : t("auth.login")}
+              </Button>
+              <span className='text-white text-center '>{t("auth.dont_have_account")} <br/>{t("auth.sign_up_from")} <Link to="register" className='underline font-bold'>{t("auth.here")}</Link></span>
+              
             </>
         )}
       </form>
+      <Languages></Languages>
     </div>
-    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import { Button } from 'flowbite-react';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from 'react-query';
 import { SERVER_URL } from '../../utils/constants';
@@ -8,13 +8,15 @@ import toast from 'react-hot-toast';
 import { Error } from '../../components/common';
 import { Link, useNavigate } from 'react-router-dom';
 import { setLogin } from '../../store/reducers/auth';
+import { AiOutlineLoading } from 'react-icons/ai';
 import {
   EmailInput,
   PasswordInput,
   PasswordConfirmationInput,
-  CheckboxInput,
+  Languages,
   Logo
 } from '../../components/authPages';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +25,7 @@ const Register = () => {
   const { global } = useSelector(state => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const mutation = useMutation(async (data) => { 
     return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/register`, data).then((res)=>res.data);
@@ -64,12 +67,14 @@ const Register = () => {
               <PasswordInput password={password} setPassword={setPassword} />
               <PasswordConfirmationInput pwConfiramtion={pwConfiramtion} setPwConfiramtion={setPwConfiramtion} />
 
-              <CheckboxInput/>
-              <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482]'>SIGN UP</Button>
-              <span className='text-white text-center '>Already have an account ? <br/>Login from <Link to="login" className='underline font-bold'>here</Link>.</span>
+              <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482]'>
+                {mutation.isLoading ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : t("auth.sign_up")}
+              </Button>
+              <span className='text-white text-center '>{t("auth.already_have_account")} <br/>{t("auth.login_from")} <Link to="login" className='underline font-bold'>{t("auth.here")}</Link></span>
             </>
           )}
       </form>
+      <Languages/>
     </div>
     </>
   )

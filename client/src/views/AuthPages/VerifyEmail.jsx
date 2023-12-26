@@ -8,9 +8,11 @@ import toast from 'react-hot-toast';
 import { setLogin } from '../../store/reducers/auth';
 import { Error } from '../../components/common';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineLoading } from 'react-icons/ai';
 import {
   Logo,
-  OtpInput
+  OtpInput,
+  Languages
 } from "../../components/authPages";
 
 const VerifyEmail = () => {
@@ -55,7 +57,12 @@ const VerifyEmail = () => {
         {mutation.error ? (<Error error={mutation.error}/>): (
           <>
             <OtpInput otp={otp} setOtp={setOtp}/>
-            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>VERIFY</Button>
+            <Button disabled={mutation.isLoading} onClick={handleSubmit} type="submit" color='light' className='text-[#190482] '>
+              {mutation.isLoading ? <AiOutlineLoading className="h-6 w-6 animate-spin" /> : t("auth.verify")}
+            </Button>
+            <div  className="mt-5">
+              <Languages/>
+            </div>
           </>
         )}
       </form>
