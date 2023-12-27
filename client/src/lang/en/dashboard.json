@@ -21,5 +21,11 @@
   "address":"Address",
   "linkedin_url":"LinkedIn Url",
   "website_url":"Website Url",
-  "click_to_upload" : "Click to upload  or drag and drop"
+  "click_to_upload" : "Click to upload  or drag and drop",
+  "invalide_file_type" : "Invalid file type",
+  "school":"School",
+  "degree":"Degree",
+  "start_date":"Start Date",
+  "end_date":"End Date",
+  "description":"Description"
 }

@@ -8,6 +8,8 @@ const CreateResume = () => {
   const { template_id } = useParams();
   const [tab, setTab] = useState({ index: 0, title: "dashboard.personal_info" });
   const [userInfo, setUserInfo] = useState(null);
+  const [biography, setBiography] = useState(null);
+  const [educations, setEducations] = useState([]);
   const navigate = useNavigate();
   
   const context = {
@@ -15,6 +17,10 @@ const CreateResume = () => {
     setTab,
     userInfo,
     setUserInfo,
+    biography,
+    setBiography,
+    educations,
+    setEducations
   };
 
   const prevStep = () => {
@@ -23,7 +29,6 @@ const CreateResume = () => {
 
   const nextStep = () => {
     navigate(CREATE_CV_ROUTES[tab.index + 1]);
-    console.log(userInfo);
   };
 
   return (
