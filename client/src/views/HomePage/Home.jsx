@@ -3,15 +3,15 @@
 
 import { Button, Navbar, Footer  } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { Body } from "../../components/home";
+import { Body, Templates, Contact} from "../../components/home";
 import { useSelector } from "react-redux";
 
 const Home = () => {
   const { auth } = useSelector(state => state);
   return (
-    <>
+    <div className="flex flex-col gap-20 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
     <div className="fixed w-screen h-auto ">
-      <Navbar fluid rounded className=' bg-gradient-to-b from-purple-100 to-white'>
+      <Navbar fluid rounded className=' bg-gradient-to-b from-white to-purple-100'>
         <Navbar.Brand href="https://flowbite-react.com">
           <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
           <span className="self-center whitespace-nowrap text-xl font-semibold ">Infinity<span className='text-purple-500'>Script</span>CV</span>
@@ -28,13 +28,19 @@ const Home = () => {
           <Navbar.Collapse>
             <Navbar.Link as={Link} to="dashboard">Dashboard</Navbar.Link>
             <Navbar.Link as={Link} to="">Services</Navbar.Link>
-            <Navbar.Link as={Link} to="">Templates</Navbar.Link>
+            <Navbar.Link href='#templates'>Templates</Navbar.Link>
             <Navbar.Link as={Link} to="">About</Navbar.Link>
           </Navbar.Collapse>
       </Navbar>
       </div>
+
       <Body/>
-      <Footer container>
+
+      <Templates />
+
+      <Contact/>
+
+      <Footer container className='bg-gradient-to-b from-purple-100 to-white'>
         <Footer.Copyright href="#" by="InfinityScript™" year={2023} />
         <Footer.LinkGroup>
           <Footer.Link href="#">About</Footer.Link>
@@ -43,7 +49,7 @@ const Home = () => {
           <Footer.Link href="#">Contact</Footer.Link>
         </Footer.LinkGroup>
       </Footer>
-    </>
+    </div>
   )
 }
 
