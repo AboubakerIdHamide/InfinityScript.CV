@@ -17,21 +17,32 @@ const Educations = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [description, setDescription] = useState("");
+  const [currentEducation, setCurrentEducation] = useState(null);
   
   useEffect(() => {
     setTab({ index: 2, title: "dashboard.education" });
   }, []);
 
-  const addEducation = () => {
-    setEducations([
-      ...educations,
-      {
+  useEffect(() => {
+    setCurrentEducation({
         school,
         degree,
         start_date: startDate,
         end_date: endDate,
         description
-      }
+    })
+  }, [
+    school,
+    degree,
+    startDate,
+    endDate,
+    description,
+  ]);
+
+  const addEducation = () => {
+    setEducations([
+      ...educations,
+      currentEducation
     ]);
     setSchool("");
     setDegree("");
@@ -69,7 +80,7 @@ const Educations = () => {
       </Button>
       {
         educations.length > 0 && (
-        <div className="absolute bg-[#EFF1F9]  right-[50px] -top-[40px] w-[30%] h-[35px] rounded-[5px] p-1 flex gap-[8px] overflow-x-scroll overflow-hidden-scroll">
+        <div className="absolute bg-[#EFF1F9]  right-[50px] -top-[40px] w-[80%] md:w-[40%] h-[35px] rounded-[5px] p-1 flex gap-[8px] overflow-x-scroll overflow-hidden-scroll">
           {educations.map((education, i) => (
             <div key={`edu-${i}`} className="w-fit flex rounded-lg bg-white p-1 justify-between items-center gap-[8px]">
               <span className='text-[12px] whitespace-nowrap'>{education.school}</span>

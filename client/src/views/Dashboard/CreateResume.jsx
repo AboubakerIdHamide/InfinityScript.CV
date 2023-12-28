@@ -10,6 +10,8 @@ const CreateResume = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [biography, setBiography] = useState(null);
   const [educations, setEducations] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [experiences, setExperiences] = useState([]);
   const navigate = useNavigate();
   
   const context = {
@@ -20,7 +22,11 @@ const CreateResume = () => {
     biography,
     setBiography,
     educations,
-    setEducations
+    setEducations,
+    experiences,
+    setExperiences,
+    skills,
+    setSkills
   };
 
   const prevStep = () => {
@@ -28,7 +34,17 @@ const CreateResume = () => {
   };
 
   const nextStep = () => {
-    navigate(CREATE_CV_ROUTES[tab.index + 1]);
+    if (tab.index == CREATE_CV_ROUTES.length - 1) {
+      console.log({
+        userInfo,
+        biography,
+        educations,
+        experiences,
+        skills
+      });
+    } else {
+      navigate(CREATE_CV_ROUTES[tab.index + 1]);
+    }
   };
 
   return (
@@ -39,7 +55,7 @@ const CreateResume = () => {
         <Outlet context={context} />
         <div className="w-[90%] h-[50px] flex justify-end gap-[15px] my-4 pb-[10px]">
           <Button disabled={tab.index == 0} onClick={prevStep} className="text-royal-purple border-royal-purple">Prev</Button>
-          <Button disabled={tab.index == CREATE_CV_ROUTES.length - 1} onClick={nextStep} className="bg-royal-purple border-royal-purple">Next</Button>
+          <Button onClick={nextStep} className="bg-royal-purple border-royal-purple">Next</Button>
         </div>
       </div>
     </div>
