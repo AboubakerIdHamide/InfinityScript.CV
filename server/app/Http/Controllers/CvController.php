@@ -8,7 +8,6 @@ use App\Models\Resume;
 use App\Models\Template;
 use App\Models\User;
 use Exception;
-use stdClass;
 
 class CvController extends Controller
 {
@@ -31,10 +30,13 @@ class CvController extends Controller
                 "experiences" => $user->experiences,
             ];
             $pdf = Pdf::loadView($template->url, $view_data);
-            $resume = Resume::create([
-                "user_id" => $user->id,
-                "template_id" => $template->id,
-            ]);
+            $resume = Resume::where("user_id", $user->id)->where("template_id", $template->id)->first();
+            if(!$resume){
+                $resume = Resume::create([
+                    "user_id" => $user->id,
+                    "template_id" => $template->id,
+                ]);
+            }
             if(!$resume){
                 return response()->json([
                     "success" => false,

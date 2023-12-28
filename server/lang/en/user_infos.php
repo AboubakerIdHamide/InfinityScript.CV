@@ -3,6 +3,7 @@
 
 return [
     "user_infos_fetched"=> "User infos fetched",
+    "user_infos_not_fetched"=> "User infos not fetched",
     "delete_success"    => "User info delete ",
     "delete_erreur"     => "User info delete fails",
     "user_infos_update"  => "User info updated",

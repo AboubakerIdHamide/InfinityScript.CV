@@ -54,7 +54,7 @@ class ForgotPasswordRequest extends FormRequest
                 "success" => false,
                 "message" => $validator->errors()->first(),
                 "data" => null,
-            ], 422)
+            ], 200)
         );
     }
 
