@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../store/reducers/auth';
 import { setLanguage } from "../../store/reducers/global";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavBar = ({ setIsOpen, isOpen, picture }) => {
   const { i18n } = useTranslation();
@@ -26,10 +26,10 @@ const NavBar = ({ setIsOpen, isOpen, picture }) => {
 
   return (
     <Navbar fluid rounded className='h-[10vh]'>
-      <Navbar.Brand href="/">
+      <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
         <span className="self-center text-royal-purple whitespace-nowrap text-xl font-semibold dark:text-white hidden sm:inline">InfinityScript.CV</span>
-      </Navbar.Brand>
+      </Link>
       <div className="flex">
         <select value={i18n.language} onChange={changeLanguage} className="font-mono text-royal-purple font-bold w-[106px] text-sm me-2 border-0 focus:ring-0">
           {languages.map((language, index) =>  (

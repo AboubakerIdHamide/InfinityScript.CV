@@ -14,7 +14,8 @@ import {
   Login,
   Register,
   VerifyEmail,
-  ResetPassword
+  ResetPassword,
+  PublicRoutes
 } from './views/AuthPages';
 import {
   PersonalInfo,
@@ -32,7 +33,7 @@ function App() {
       <Toaster/>
       <Routes>
         <Route path='/*' element={<Home/>}/>
-        <Route path='/auth'>
+        <Route path='/auth' element={<PublicRoutes/>}>
           <Route path='*' element={<Login/>}/>
           <Route path='register' element={<Register/>}/>
           <Route path='verify-email' element={<VerifyEmail/>}/>

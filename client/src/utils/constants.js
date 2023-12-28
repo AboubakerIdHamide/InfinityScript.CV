@@ -32,3 +32,13 @@ export const resources = {
     },
   },
 };
+
+
+// Create CV constants
+export const CREATE_CV_ROUTES = [
+  "personal-info",
+  "biography",
+  "educations",
+  "skills",
+  "experiences",
+];
