@@ -3,15 +3,22 @@
 
 import { Button, Navbar, Footer  } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { Body } from "../../components/home";
+import { Body, Templates, Contact, About} from "../../components/home";
 import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import { languages } from '../../utils/constants';
 
 const Home = () => {
+  const { i18n,t } = useTranslation();
   const { auth } = useSelector(state => state);
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+    dispatch(setLanguage(e.target.value));
+  };
   return (
-    <>
+    <div className="flex flex-col gap-10 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
     <div className="fixed w-screen h-auto ">
-      <Navbar fluid rounded className=' bg-gradient-to-b from-purple-100 to-white'>
+      <Navbar fluid rounded className=' bg-gradient-to-b from-white to-purple-100'>
         <Navbar.Brand href="https://flowbite-react.com">
           <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
           <span className="self-center whitespace-nowrap text-xl font-semibold ">Infinity<span className='text-purple-500'>Script</span>CV</span>
@@ -26,24 +33,32 @@ const Home = () => {
           <Navbar.Toggle />
         </div>
           <Navbar.Collapse>
-            <Navbar.Link as={Link} to="dashboard">Dashboard</Navbar.Link>
-            <Navbar.Link as={Link} to="">Services</Navbar.Link>
-            <Navbar.Link as={Link} to="">Templates</Navbar.Link>
-            <Navbar.Link as={Link} to="">About</Navbar.Link>
+            <Navbar.Link as={Link} to="dashboard">{t("home.dashboard")}</Navbar.Link>
+            <Navbar.Link href='#templates'>Templates</Navbar.Link>
+            <Navbar.Link href="#contact">Contact</Navbar.Link>
+            <Navbar.Link href='#about'>About</Navbar.Link>
           </Navbar.Collapse>
       </Navbar>
       </div>
+
       <Body/>
-      <Footer container>
-        <Footer.Copyright href="#" by="InfinityScript™" year={2023} />
-        <Footer.LinkGroup>
-          <Footer.Link href="#">About</Footer.Link>
-          <Footer.Link href="#">Privacy Policy</Footer.Link>
-          <Footer.Link href="#">Licensing</Footer.Link>
-          <Footer.Link href="#">Contact</Footer.Link>
-        </Footer.LinkGroup>
+
+      <Templates />
+
+      <Contact/>
+
+      <About />
+
+      <Footer container className='bg-gradient-to-b from-purple-100 to-white flex justify-between items-center'>
+        <Footer.Copyright href="#" by="InfinityScript™" year={2023} className='inline' />
+        <select value={i18n.language} onChange={changeLanguage} className="font-mono text-royal-purple font-bold sm:w-[106px] text-sm border-0 focus:ring-0">
+          {languages.map((language, index) =>  (
+                <option className='p-[10px]' key={index} value={language.code}>{language.name}</option>
+            )
+          )}
+        </select>
       </Footer>
-    </>
+    </div>
   )
 }
 
