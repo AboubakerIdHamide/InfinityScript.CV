@@ -1,9 +1,10 @@
+import { t } from "i18next"
 
 const About = () => {
     return(
         <div id="about" className=" flex flex-col justify-center">
             <div className=' mt-10'>
-                <h2  className="text-4xl font-extrabold dark:text-white text-center">Discover Our <span className='text-purple-500'> Story </span></h2>
+                <h2  className="text-4xl font-extrabold dark:text-white text-center mt-5">{t("home.discover_our") } <span className='text-purple-500'> {t("home.story")} </span></h2>
                 <p className="my-4 text-lg text-gray-500 w-2/3 text-center m-auto">Embark on a journey with us as we unfold the narrative behind our passion and purpose. Explore 'Discover Our Story' to understand the heart and soul of what drives us forward..</p>
             </div>
             <div className=" flex sm:flex-row flex-col gap-10 justify-center items-center flex-col-reverse">
@@ -11,13 +12,13 @@ const About = () => {
                     <img src="prologue.png" alt="prologue" />
                 </div>
                 <div className="sm:w-1/2 p-3">
-                    <h3 class="text-3xl font-bold mb-3 text-center">Prologue</h3>
+                    <h3 class="text-3xl font-bold mb-3 text-center">{t("home.prologue")}</h3>
                     <p className="text-center text-gray-500">InfinityScriptCV was founded to address a major challenge: how to create a resume that stands out from the crowd and showcases your unique skills and achievements. With InfinityScriptCV, you can easily generate a professional and customized resume that highlights your strengths and matches the requirements of your desired job. Whether you are looking for a career change, a promotion, or a new opportunity, InfinityScriptCV can help you craft the perfect resume that will impress any employer.</p>
                 </div>
             </div>
             <div className=" flex sm:flex-row sm:flex-row-reverse flex-col flex-col-reverse gap-10 justify-center items-center">
                 <div className="w-1/3">
-                    <img src="chapterOne.png" alt="" />
+                    <img src="chapterOne.png" alt="Chapte One" />
                 </div>
                 <div className="sm:w-1/2 p-3">
                     <h3 class="text-3xl font-bold mb-3 text-center">Chapter One</h3>
@@ -26,7 +27,7 @@ const About = () => {
             </div>
             <div className="flex sm:flex-row flex-col gap-10 justify-center items-center flex-col-reverse">
                 <div className="w-1/3">
-                    <img src="future.png" alt="prologue" />
+                    <img src="future.png" alt="Next Steps" />
                 </div>
                 <div className="sm:w-1/2 p-3">
                     <h3 class="text-3xl font-bold mb-3 text-center">What's Next</h3>
