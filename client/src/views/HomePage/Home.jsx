@@ -5,9 +5,16 @@ import { Button, Navbar, Footer  } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { Body, Templates, Contact, About} from "../../components/home";
 import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import { languages } from '../../utils/constants';
 
 const Home = () => {
+  const { i18n,t } = useTranslation();
   const { auth } = useSelector(state => state);
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.target.value);
+    dispatch(setLanguage(e.target.value));
+  };
   return (
     <div className="flex flex-col gap-10 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
     <div className="fixed w-screen h-auto ">
@@ -26,7 +33,7 @@ const Home = () => {
           <Navbar.Toggle />
         </div>
           <Navbar.Collapse>
-            <Navbar.Link as={Link} to="dashboard">Dashboard</Navbar.Link>
+            <Navbar.Link as={Link} to="dashboard">{t("home.dashboard")}</Navbar.Link>
             <Navbar.Link href='#templates'>Templates</Navbar.Link>
             <Navbar.Link href="#contact">Contact</Navbar.Link>
             <Navbar.Link href='#about'>About</Navbar.Link>
@@ -42,14 +49,14 @@ const Home = () => {
 
       <About />
 
-      <Footer container className='bg-gradient-to-b from-purple-100 to-white'>
-        <Footer.Copyright href="#" by="InfinityScript™" year={2023} />
-        <Footer.LinkGroup>
-          <Footer.Link href="#">About</Footer.Link>
-          <Footer.Link href="#">Privacy Policy</Footer.Link>
-          <Footer.Link href="#">Licensing</Footer.Link>
-          <Footer.Link href="#">Contact</Footer.Link>
-        </Footer.LinkGroup>
+      <Footer container className='bg-gradient-to-b from-purple-100 to-white flex justify-between items-center'>
+        <Footer.Copyright href="#" by="InfinityScript™" year={2023} className='inline' />
+        <select value={i18n.language} onChange={changeLanguage} className="font-mono text-royal-purple font-bold sm:w-[106px] text-sm border-0 focus:ring-0">
+          {languages.map((language, index) =>  (
+                <option className='p-[10px]' key={index} value={language.code}>{language.name}</option>
+            )
+          )}
+        </select>
       </Footer>
     </div>
   )
