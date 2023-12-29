@@ -14,6 +14,7 @@ import {
   OtpInput,
   Languages
 } from "../../components/authPages";
+import { t } from 'i18next';
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState("");
