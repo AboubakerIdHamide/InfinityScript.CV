@@ -38,5 +38,9 @@
   "enter_languages": "أدخل اللغات",
   "no_languages": "لا يوجد لغات",
   "language": "اللغة",
-  "language_level" : "مستوى اللغة"
+  "language_level": "مستوى اللغة",
+  "prev": "السابق",
+  "next": "التالي",
+  "download": "تحميل",
+  "download_update": "تحميل وتحديث الملف الشخصي"
 }

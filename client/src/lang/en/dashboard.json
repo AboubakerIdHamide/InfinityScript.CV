@@ -38,5 +38,9 @@
   "enter_languages" : "Enter languages",
   "no_languages" : "No languages",
   "language" : "Language",
-  "language_level" : "Language Level"
+  "language_level" : "Language Level",
+  "prev" : "Prev",
+  "next" : "Next",
+  "download" : "Download",
+  "download_update" : "Download & Update Profile"
 }

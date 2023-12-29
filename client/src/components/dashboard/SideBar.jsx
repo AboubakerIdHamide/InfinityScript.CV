@@ -18,7 +18,7 @@ const SideBar = ({ isOpen, isPhone }) => {
                 <IoNewspaperOutline className="w-5 h-5 transition duration-75"/>
                 <span className="ms-3">{t('dashboard.new_templates')}</span>
             </NavLink>
-            <NavLink to="create-resume" className={({isActive})=>isActive ? activeLink: unactiveLink}>
+            <NavLink to="create-resume/1/personal-info" className={({isActive})=>isActive ? activeLink: unactiveLink}>
                 <FaFileCirclePlus className="w-5 h-5 transition duration-75"/>
                 <span className="ms-3">{t('dashboard.create_resume')}</span>
             </NavLink>
