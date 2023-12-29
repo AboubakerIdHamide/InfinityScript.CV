@@ -11,3 +11,11 @@
     background-color: #7752FE;
     border-radius: 20px;
 }
+
+.rti--container {
+    background-color: #EFF1F9;
+    border: none;
+    outline: none;
+    height: 100%;
+    align-items: start;
+}

@@ -27,5 +27,20 @@
   "degree":"Degree",
   "start_date":"Start Date",
   "end_date":"End Date",
-  "description":"Description"
+  "description":"Description",
+  "title":"Title",
+  "employement_type":"Employement Type",
+  "company_name":"Company Name",
+  "location":"Location",
+  "location_type":"Location Type",
+  "enter_skills" : "Enter skills",
+  "enter_hobbies" : "Enter hobbies",
+  "enter_languages" : "Enter languages",
+  "no_languages" : "No languages",
+  "language" : "Language",
+  "language_level" : "Language Level",
+  "prev" : "Prev",
+  "next" : "Next",
+  "download" : "Download",
+  "download_update" : "Download & Update Profile"
 }

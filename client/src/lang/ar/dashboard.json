@@ -27,5 +27,20 @@
   "degree": "الشهادة",
   "start_date": "تاريخ البدء",
   "end_date": "تاريخ الانتهاء",
-  "description": "الوصف"
+  "description": "الوصف",
+  "title": "العنوان",
+  "employement_type": "نوع العمل",
+  "company_name": "اسم الشركة",
+  "location": "الموقع",
+  "location_type": "نوع الموقع",
+  "enter_skills": "أدخل المهارات",
+  "enter_hobbies": "أدخل الهوايات",
+  "enter_languages": "أدخل اللغات",
+  "no_languages": "لا يوجد لغات",
+  "language": "اللغة",
+  "language_level": "مستوى اللغة",
+  "prev": "السابق",
+  "next": "التالي",
+  "download": "تحميل",
+  "download_update": "تحميل وتحديث الملف الشخصي"
 }
