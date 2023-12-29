@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'flowbite-react';
 const Templates = () => {
     return(
-        <div id="templates"  >
+        <div id="templates">
             <div className='flex flex-col justify-center mb-5'>
-                <h2 className="text-4xl font-extrabold dark:text-white text-center">Find Your <span className='text-purple-500'>Perfect</span>  Template</h2>
+                <h2   className="mt-20 text-4xl font-extrabold dark:text-white text-center">Find Your <span className='text-purple-500'>Perfect</span>  Template</h2>
                 <p className="my-4 text-lg text-gray-500 w-2/3 text-center m-auto">Welcome to InfinityScriptCV's Template Gallery! Discover the perfect template to showcase your skills and experiences.</p>
                 <Link to="dashboard/templates" className="inline-flex justify-center items-center text-lg text-purple-500 hover:underline hover:text-black sm:w-1/3 m-auto">
                 Choose Your Template
@@ -15,7 +15,7 @@ const Templates = () => {
             </div>
         
             <div className="h-screen">
-            <Carousel pauseOnHover >
+            <Carousel pauseOnHover className='relative' >
                 <img src="/templates/template1.png" className='sm:w-1/3'  alt="..." />
                 <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
                 <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
