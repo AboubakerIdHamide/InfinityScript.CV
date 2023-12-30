@@ -26,7 +26,7 @@ class CreateResumeUpdateProfile extends FormRequest
             "user_id"=> "exists:users,id",
             "template_id"=> "exists:templates,id",
             "informations"=> "json",
-            "picture"=> "image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "picture"=> "nullable",
             "skills"=> "json",
             "educations"=> "json",
             "experiences"=> "json"

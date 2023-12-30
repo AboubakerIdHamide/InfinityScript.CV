@@ -78,7 +78,7 @@ class UsersController extends Controller
                 "success" => false,
                 "message" => __("user_infos.user_infos_not_fetched"),
                 "data" => $e->getMessage(),
-            ], 422);
+            ], 200);
         }
     }
 }

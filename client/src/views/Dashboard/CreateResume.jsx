@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useMutation, useQuery } from "react-query";
 import axios from "axios";
 import { Error, Loading } from "../../components/common";
+import toast from "react-hot-toast";
 
 const CreateResume = () => {
   const { template_id } = useParams();
@@ -38,42 +39,45 @@ const CreateResume = () => {
   };
 
   const { isLoading, error } = useQuery("user-info", () => {
-    return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data.data);
+    return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data);
   }, {
-    onSuccess: ({ user }) => {
-      setUserInfo(user.userinfos);
-      setBiography({
-        preview: `${SERVER_URL}/${user.userinfos.picture}`,
-        description: user.userinfos.biography,
-      });
-      setSkills({
-        skills: user.skills.skills.split(","),
-        hobbies : user.skills.hobbies.split(","),
-        languages: JSON.parse(user.skills.languages)
-      });
-
-      user.educations.forEach(formatIt);
-      setEducations(user.educations);
-
-      user.experiences.forEach(formatIt);
-      setExperiences(user.experiences);
+    onSuccess: ({ success, data }) => {
+      if (success) {
+        const {user} = data;
+        setUserInfo(user.userinfos);
+        setBiography({
+          preview: `${SERVER_URL}/${user.userinfos.picture}`,
+          description: user.userinfos.biography,
+        });
+        setSkills({
+          skills: user.skills.skills.split(","),
+          hobbies : user.skills.hobbies.split(","),
+          languages: JSON.parse(user.skills.languages)
+        });
+  
+        user.educations.forEach(formatIt);
+        setEducations(user.educations);
+  
+        user.experiences.forEach(formatIt);
+        setExperiences(user.experiences);
+      }
     },
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnmount: false,
     refetchOnReconnect: false,
   });
-
+        
   const mutation = useMutation((data) => { 
     return axios.post(`${SERVER_URL}/api/${global.lang}/create-resume-update-profile`, data, {
       responseType: 'blob',
       headers: {
         'Content-Type': 'multipart/form-data'
-      }
+      },
     }).then((res)=>res.data);
   },
     {
-      onSuccess: (data) => { 
+      onSuccess: (data) => {
         const blobUrl = window.URL.createObjectURL(new Blob([data]));
         const link = document.createElement('a');
         link.href = blobUrl;
@@ -81,6 +85,10 @@ const CreateResume = () => {
         link.click();
         link.remove();
         navigate("/dashboard/my-resumes");
+      },
+      onError: (error) => {
+        console.log(error);
+        toast.error(t("dashboard.error_download"), { duration: 5000 });
       },
     }
   );
@@ -120,7 +128,7 @@ const CreateResume = () => {
     mutation.mutate(formData);
   }
 
-  if (isLoading) return <Loading />;
+  if (isLoading || mutation.isLoading) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <div className="bg-white w-full h-full rounded-[10px] flex overflow-y-scroll">

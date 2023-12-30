@@ -82,10 +82,18 @@ class CvController extends Controller
             ];
 
             // Uploading User IMG
+            $old_picture = isset($user->userinfos) ? $user->userinfos->picture : "";
             if($request->hasFile("picture")){
                 $data["informations"]->picture = $request->file('picture')->store('public/pictures');
+            }else{
+                if($old_picture!=""){
+                    $data["informations"]->picture = $old_picture;
+                }else{
+                    $data["informations"]->picture = "public/pictures/default.png"; 
+                }
             }
 
+            // Updating user info if update == true
             if ($data["update"]=="true") {
                 // User Infos
                 $user->userinfos()->updateOrcreate([
@@ -163,10 +171,6 @@ class CvController extends Controller
             $view_data["informations"]->picture = storage_path("app/" . $data["informations"]->picture);
             $pdf = Pdf::loadView($template->url, $view_data);
             $fullname = $data["informations"]->first_name . "_" . $data["informations"]->last_name;
-            // Delete the image after using it if !update
-            if(!$data["update"]){
-                Storage::delete($data["informations"]["picture"]);
-            }
 
             return $pdf->download($fullname . ".pdf");
         } catch (Exception $e) {

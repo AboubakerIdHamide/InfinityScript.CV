@@ -14,11 +14,11 @@ const Skills = () => {
     setSkills,
     setShowSaveBtns
   } = useOutletContext();
-  const [skillTags, setSkillTags] = useState(skills?.skills);
-  const [hobbies, setHobbies] = useState(skills?.hobbies);
+  const [skillTags, setSkillTags] = useState(skills?.skills || []);
+  const [hobbies, setHobbies] = useState(skills?.hobbies || []);
   const [language, setLanguage] = useState("");
   const [languageLevel, setLanguageLevel] = useState("");
-  const [languages, setLanguages] = useState(skills?.languages);
+  const [languages, setLanguages] = useState(skills?.languages || {});
 
   useEffect(() => {
     setTab({ index: 3, title: "dashboard.skills" });

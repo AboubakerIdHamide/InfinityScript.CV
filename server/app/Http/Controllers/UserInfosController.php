@@ -71,7 +71,7 @@ class UserInfosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserInfosRequest $request, string $id)
+    public function update(UserInfosRequest $request, $lang, $id)
     {
         $data = $request->validated();
         $user_info = UserInfos::find($id);

@@ -24,7 +24,7 @@ const Templates = () => {
           <div className="col-span-2 flex justify-evenly items-center text-royal-purple">
             <span>{ template.name }</span>
             <button className="rounded-md bg-slate-300 hover:bg-slate-600 hover:text-slate-200 duration-300 p-2">
-              <Link to={`/dashboard/create-resume/${template.id}`}>
+              <Link to={`/dashboard/create-resume/${template.id}/personal-info`}>
                 <HiOutlineExternalLink className="text-xl" />
               </Link>
             </button>
