@@ -19,24 +19,24 @@ const Home = () => {
     <div className="flex flex-col gap-10 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
     <div className="fixed w-screen h-auto ">
       <Navbar fluid rounded className=' bg-gradient-to-b from-white to-purple-100'>
-        <Navbar.Brand href="https://flowbite-react.com">
+        <Navbar.Brand as={Link} to="">
           <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
           <span className="self-center whitespace-nowrap text-xl font-semibold ">Infinity<span className='text-purple-500'>Script</span>CV</span>
         </Navbar.Brand>
         <div className="flex md:order-2 gap-3 ">
           {!auth.token ? (
-            <Button as={Link} to={"auth/login"} color='light' className='hidden sm:flex'>Log In</Button>
+            <Button as={Link} to={"auth/login"} color='light' className='hidden sm:flex'>{t("home.login")}</Button>
           ) : (
-            <Button as={Link} to={"dashboard/profile"} color='light' className='hidden sm:flex'>Profile</Button>
+            <Button as={Link} to={"dashboard/profile"} color='light' className='hidden sm:flex'>{t("home.profile")}</Button>
           )}
-          <Button gradientMonochrome="purple">Get started</Button>
+          <Button gradientMonochrome="purple">{t("home.get_started")}</Button>
           <Navbar.Toggle />
         </div>
           <Navbar.Collapse>
             <Navbar.Link as={Link} to="dashboard">{t("home.dashboard")}</Navbar.Link>
-            <Navbar.Link href='#templates'>Templates</Navbar.Link>
-            <Navbar.Link href="#contact">Contact</Navbar.Link>
-            <Navbar.Link href='#about'>About</Navbar.Link>
+            <Navbar.Link href='#templates'>{t("home.templates")}</Navbar.Link>
+            <Navbar.Link href="#contact">{t("home.contact")}</Navbar.Link>
+            <Navbar.Link href='#about'>{t("home.about")}</Navbar.Link>
           </Navbar.Collapse>
       </Navbar>
       </div>
