@@ -38,5 +38,13 @@
   "enter_languages": "أدخل اللغات",
   "no_languages": "لا يوجد لغات",
   "language": "اللغة",
-  "language_level" : "مستوى اللغة"
+  "language_level": "مستوى اللغة",
+  "prev": "السابق",
+  "next": "التالي",
+  "download": "تحميل",
+  "download_update": "تحميل وتحديث الملف الشخصي",
+  "error_download": "حدث خطأ أثناء التنزيل، حاول مرة أخرى!",
+  "save": "حفظ",
+  "error_something_wrong": "حدث خطأ ما، حاول مرة أخرى!",
+  "setup_profile": "قم بإعداد ملف التعريف الخاص بك عن طريق إنشاء سيرتك الذاتية أولاً"
 }

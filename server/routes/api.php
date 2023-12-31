@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\UserInfosController;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
+    Route::post('/contact', [ContactController::class, 'contact']);
+    
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/register', [Auth::class, 'register']);
         Route::post('/login', [Auth::class, 'login']);
@@ -34,6 +37,7 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum'], function () {
         Route::get('{id}/resumes', [UsersController::class, 'getResumes']);
         Route::get('{id}/picture', [UsersController::class, 'getPicture']);
+        Route::get('{id}/data', [UsersController::class, 'getData']);
     });
     
     Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -43,6 +47,7 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
         Route::resource('/experiences', ExperienceController::class)->except(['edit', 'create']);
         Route::resource('/skills', SkillController::class)->except(['edit', 'create']);
         Route::post("/download", [CvController::class, "download"]);
+        Route::post("/create-resume-update-profile", [CvController::class, "createResumeUpdateProfile"]);
     });
 });
 

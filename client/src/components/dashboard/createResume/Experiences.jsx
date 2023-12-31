@@ -10,7 +10,8 @@ const Experiences = () => {
   const {
     setTab,
     experiences,
-    setExperiences
+    setExperiences,
+    setShowSaveBtns
   } = useOutletContext();
 
   const [title, setTitle] = useState("");
@@ -25,6 +26,7 @@ const Experiences = () => {
 
   useEffect(() => {
     setTab({ index: 4, title: "dashboard.experience" });
+    setShowSaveBtns(true);
   }, []);
 
   useEffect(() => {
@@ -64,10 +66,23 @@ const Experiences = () => {
     setDescription("");
   }
 
-  const daleteExperience = (i) => {
+  const deleteExperience = (i, e) => {
+    e.stopPropagation();
     const newExperiences = [...experiences];
     newExperiences.splice(i, 1);
     setExperiences(newExperiences);
+  }
+
+  const modify = (experience, i, e) => {
+    setTitle(experience.title);
+    setEmployementType(experience.employement_type);
+    setCompanyName(experience.company_name);
+    setLocation(experience.location);
+    setLocationType(experience.location_type);
+    setStartDate(experience.start_date);
+    setEndDate(experience.end_date);
+    setDescription(experience.description);
+    deleteExperience(i,e)
   }
   
   return (
@@ -98,9 +113,9 @@ const Experiences = () => {
         experiences.length > 0 && (
         <div className="absolute bg-[#EFF1F9]  right-[50px] -top-[40px] w-[80%] md:w-[40%] h-[35px] rounded-[5px] p-1 flex gap-[8px] overflow-x-scroll overflow-hidden-scroll">
           {experiences.map((experience, i) => (
-            <div key={`exp-${i}`} className="w-fit flex rounded-lg bg-white p-1 justify-between items-center gap-[8px]">
+            <div key={`exp-${i}`} className="w-fit flex rounded-lg bg-white p-1 justify-between items-center gap-[8px] cursor-pointer"  onClick={(e)=>modify(experience, i, e)}>
               <span className='text-[12px] whitespace-nowrap'>{experience.title}</span>
-              <Button className='bg-royal-purple w-[20px] h-[20px]  rounded-lg' onClick={()=>daleteExperience(i)}>
+              <Button className='bg-royal-purple w-[20px] h-[20px]  rounded-lg' onClick={(e)=>deleteExperience(i, e)}>
                 <IoMdClose />
               </Button>
             </div>

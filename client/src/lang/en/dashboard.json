@@ -38,5 +38,13 @@
   "enter_languages" : "Enter languages",
   "no_languages" : "No languages",
   "language" : "Language",
-  "language_level" : "Language Level"
+  "language_level" : "Language Level",
+  "prev" : "Prev",
+  "next" : "Next",
+  "download" : "Download",
+  "download_update" : "Download & Update Profile",
+  "error_download" : "Error While Downloading, Try Again !",
+  "save" : "Save",
+  "error_something_wrong" : "Something went wrong, Try Again !",
+  "setup_profile" : "Set up your profile by creating you first resume"
 }

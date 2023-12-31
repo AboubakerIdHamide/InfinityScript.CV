@@ -8,18 +8,21 @@ import toast from "react-hot-toast";
 const Biography = () => {
   const {
     setTab,
+    biography,
     setBiography,
+    setShowSaveBtns
   } = useOutletContext();
-  const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [description, setDescription] = useState(null);
+  const [file, setFile] = useState(biography?.file);
+  const [preview, setPreview] = useState(biography?.preview);
+  const [description, setDescription] = useState(biography?.description);
 
   useEffect(() => {
-    setTab({ index: 1, title: "dashboard.biography"});
+    setTab({ index: 1, title: "dashboard.biography" });
+      setShowSaveBtns(false);
   }, []);
 
   useEffect(() => {
-    setBiography({ file, description });
+    setBiography({ file, description, preview });
   }, [file, description]);
 
   const handleFileInput = (e) => {

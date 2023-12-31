@@ -10,7 +10,8 @@ const Educations = () => {
   const {
     setTab,
     educations,
-    setEducations
+    setEducations,
+    setShowSaveBtns
   } = useOutletContext();
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
@@ -21,6 +22,7 @@ const Educations = () => {
   
   useEffect(() => {
     setTab({ index: 2, title: "dashboard.education" });
+    setShowSaveBtns(false);
   }, []);
 
   useEffect(() => {
@@ -51,10 +53,20 @@ const Educations = () => {
     setDescription("");
   }
 
-  const daleteEducation = (i) => {
+  const deleteEducation = (i, e) => {
+    e.stopPropagation();
     const newEducations = [...educations];
     newEducations.splice(i, 1);
     setEducations(newEducations);
+  }
+
+  const modify = (education, i, e) => {
+    setSchool(education.school);
+    setDegree(education.degree);
+    setStartDate(education.start_date)
+    setEndDate(education.end_date)
+    setDescription(education.description);
+    deleteEducation(i,e)
   }
 
   return (
@@ -64,7 +76,7 @@ const Educations = () => {
         <Input placeholder={t("dashboard.degree")} value={degree} setValue={setDegree} />
         <div className='w-full flex flex-col mt-1'>
           <span className='ms-2 text-[14px] text-royal-purple'>{t("dashboard.start_date")}</span>
-          <Input type="date" value={startDate} setValue={setStartDate}/>
+          <Input type="date" value={startDate} setValue={setStartDate} />
         </div>
         <div className='w-full flex flex-col mt-1'>
           <span className='ms-2 text-[14px] text-royal-purple'>{t("dashboard.end_date")}</span>
@@ -82,9 +94,9 @@ const Educations = () => {
         educations.length > 0 && (
         <div className="absolute bg-[#EFF1F9]  right-[50px] -top-[40px] w-[80%] md:w-[40%] h-[35px] rounded-[5px] p-1 flex gap-[8px] overflow-x-scroll overflow-hidden-scroll">
           {educations.map((education, i) => (
-            <div key={`edu-${i}`} className="w-fit flex rounded-lg bg-white p-1 justify-between items-center gap-[8px]">
+            <div key={`edu-${i}`} className="w-fit flex rounded-lg bg-white p-1 justify-between items-center gap-[8px] cursor-pointer" onClick={(e)=>modify(education, i, e)}>
               <span className='text-[12px] whitespace-nowrap'>{education.school}</span>
-              <Button className='bg-royal-purple w-[20px] h-[20px]  rounded-lg' onClick={()=>daleteEducation(i)}>
+              <Button className='bg-royal-purple w-[20px] h-[20px]  rounded-lg' onClick={(e)=>deleteEducation(i, e)}>
                 <IoMdClose />
               </Button>
             </div>

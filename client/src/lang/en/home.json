@@ -4,6 +4,7 @@
     "contact" : "Contact",
     "about" : "About",
     "profile" : "Profile",
+    "login" : "Log In",
     "get_started" : "Get Started",
     "your_path" : "Your Path To Success",
     "starts" : "Starts",
@@ -13,23 +14,24 @@
     "find_your" : "Find Your",
     "perfect" : "Perfect",
     "template" : "Template",
+    "paragraph2" : "Welcome to InfinityScriptCV's Template Gallery! Discover the perfect template to showcase your skills and experiences.",
     "choose_your_template" : "Choose Your Template",
     "we" : "We'd",
     "love" : "Love",
     "to_hear_from_you" : "To Hear From You",
-    "paragraph2" : "We'd love to hear from you. Whether you have a question, want to share your thoughts, or simply say hello, we're here for it all.",
+    "paragraph3" : "We'd love to hear from you. Whether you have a question, want to share your thoughts, or simply say hello, we're here for it all.",
     "email" : "EMAIL",
     "leave_a_comment" : "Leave a comment",
     "send" : "Send",
     "discover_our" : "Discover Our",
     "story" : "Story",
-    "paragraph3" : "Embark on a journey with us as we unfold the narrative behind our passion and purpose. Explore 'Discover Our Story' to understand the heart and soul of what drives us forward..",
+    "paragraph4" : "Embark on a journey with us as we unfold the narrative behind our passion and purpose. Explore 'Discover Our Story' to understand the heart and soul of what drives us forward..",
     "prologue" : "Prologue",
-    "paragraph4" : "InfinityScriptCV was founded to address a major challenge: how to create a resume that stands out from the crowd and showcases your unique skills and achievements. With InfinityScriptCV, you can easily generate a professional and customized resume that highlights your strengths and matches the requirements of your desired job. Whether you are looking for a career change, a promotion, or a new opportunity, InfinityScriptCV can help you craft the perfect resume that will impress any employer.",
+    "paragraph5" : "InfinityScriptCV was founded to address a major challenge: how to create a resume that stands out from the crowd and showcases your unique skills and achievements. With InfinityScriptCV, you can easily generate a professional and customized resume that highlights your strengths and matches the requirements of your desired job. Whether you are looking for a career change, a promotion, or a new opportunity, InfinityScriptCV can help you craft the perfect resume that will impress any employer.",
     "chapter_one" : "Chapter One",
-    "paragraph5" : "InfinityScriptCV is a resume generator website that helps you create professional and personalized CVs in minutes. The idea behind InfinityScriptCV was born in 2023, when Salah Eddine Zouitni, Aboubaker and Mahmoud realized that there was a gap in the market for a simple and effective tool that could help job seekers showcase their skills and achievements. They decided to use their expertise in web development, design and marketing to create a platform that would allow users to choose from various templates, customize them with their own information and download them as PDF files. InfinityScriptCV aims to make resume writing easy, fun and rewarding for everyone.",
+    "paragraph6" : "InfinityScriptCV is a resume generator website that helps you create professional and personalized CVs in minutes. The idea behind InfinityScriptCV was born in 2023, when Salah Eddine Zouitni, Aboubaker and Mahmoud realized that there was a gap in the market for a simple and effective tool that could help job seekers showcase their skills and achievements. They decided to use their expertise in web development, design and marketing to create a platform that would allow users to choose from various templates, customize them with their own information and download them as PDF files. InfinityScriptCV aims to make resume writing easy, fun and rewarding for everyone.",
     "whats_next" : "What's Next",
-    "paragraph6": "The story continues, its pages yet unwritten. We're committed to evolving alongside your career journey, and our next chapters hold exciting additions:<br/><b>Diverse Templates for Diverse Voices:</b> We're expanding our collection to embrace more industries, styles, and personalities, ensuring you'll find a design that resonates with your unique brand<br/><b>Global Reach, Local Touch:</b> We're breaking linguistic barriers by introducing support for more languages, ensuring your story is heard and understood across borders."
+    "paragraph7": "The story continues, its pages yet unwritten. We're committed to evolving alongside your career journey, and our next chapters hold exciting additions: Diverse Templates for Diverse Voices: We're expanding our collection to embrace more industries, styles, and personalities, ensuring you'll find a design that resonates with your unique brand Global Reach, Local Touch: We're breaking linguistic barriers by introducing support for more languages, ensuring your story is heard and understood across borders."
       
       
 }

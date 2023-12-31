@@ -26,4 +26,5 @@ return [
     "not_found"=>"Not found",
     "unautorized" => "Invalide Token !",
     "token_valid" => "Token is valid",
+    "mail_sent" => "Email sent successfully"
 ];

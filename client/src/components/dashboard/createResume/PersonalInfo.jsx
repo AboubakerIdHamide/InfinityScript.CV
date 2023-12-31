@@ -7,26 +7,28 @@ import { useSelector } from 'react-redux';
 const PersonalInfo = () => {
   const {
     setTab,
+    userInfo,
     setUserInfo,
+    setShowSaveBtns
   } = useOutletContext();
   
   const { auth } = useSelector(state => state);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState(userInfo?.first_name);
+  const [lastName, setLastName] = useState(userInfo?.last_name);
   const [email, setEmail] = useState(auth.user.email);
-  const [phone, setPhone] = useState("");
-  const [proffesion, setProffesion] = useState("");
-  const [address, setAddress] = useState("");
-  const [linkedinUrl, setLinkedinUrl] = useState("");
-  const [websiteUrl, setWebsiteUrl] = useState("");
+  const [phone, setPhone] = useState(userInfo?.phone);
+  const [proffesion, setProffesion] = useState(userInfo?.proffesion);
+  const [address, setAddress] = useState(userInfo?.address);
+  const [linkedinUrl, setLinkedinUrl] = useState(userInfo?.linkedin_url);
+  const [websiteUrl, setWebsiteUrl] = useState(userInfo?.website_url);
 
   useEffect(() => {
     setTab({ index: 0, title: "dashboard.personal_info" });
+    setShowSaveBtns(false);
   }, []);
 
   useEffect(() => {
     setUserInfo({
-      user_id: auth.user.id,
       first_name: firstName,
       last_name: lastName,
       phone,
