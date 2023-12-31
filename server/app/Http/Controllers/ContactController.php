@@ -22,11 +22,11 @@ class ContactController extends Controller
 
         try {
             $mailer->isSMTP();
-            $mailer->Host       = 'smtp.gmail.com';
+            $mailer->Host       = env('MAIL_HOST');
             $mailer->SMTPAuth   = true;
-            $mailer->Username   = 'infinityscipt.cv@gmail.com';
-            $mailer->Password   = 'rogo yfbz yfru tsqd';
-            $mailer->SMTPSecure = 'tls';
+            $mailer->Username   = env("MAIL_USERNAME");
+            $mailer->Password   = env("MAIL_PASSWORD");
+            $mailer->SMTPSecure = env("MAIL_ENCRYPTION");
             $mailer->Port       = 587;
 
             $mailer->setFrom('infinityscipt.cv@gmail.com', 'InfinityScript');
@@ -38,7 +38,7 @@ class ContactController extends Controller
 
             $mailer->send();
 
-            return response()->json(['message' => 'Email sent successfully'], 200);
+            return response()->json(['message' => __("auth.mail_sent")], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }

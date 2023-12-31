@@ -21,16 +21,16 @@ const Home = () => {
     dispatch(setLanguage(e.target.value));
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     i18n.changeLanguage(lang);
-  })
+  }, []);
   return (
     <div className="flex flex-col gap-10 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
-    <div className="fixed w-screen h-auto ">
-      <Navbar fluid rounded className=' bg-gradient-to-b from-white to-purple-100'>
+    <div className="fixed w-screen h-auto z-[1000]">
+      <Navbar fluid rounded className='bg-gradient-to-b from-white to-purple-100'>
         <Navbar.Brand as={Link} to="">
           <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
-          <span className="self-center whitespace-nowrap text-xl font-semibold ">Infinity<span className='text-purple-500'>Script</span>CV</span>
+          <span className="hidden md:inline self-center whitespace-nowrap text-xl font-semibold">Infinity<span className='text-purple-500'>Script</span>CV</span>
         </Navbar.Brand>
         <div className="flex md:order-2 gap-3 ">
           {!auth.token ? (
@@ -42,7 +42,7 @@ const Home = () => {
           <Navbar.Toggle />
         </div>
           <Navbar.Collapse>
-            <Navbar.Link as={Link} to="dashboard">{t("home.dashboard")}</Navbar.Link>
+            <Navbar.Link as={Link} to="dashboard/new">{t("home.dashboard")}</Navbar.Link>
             <Navbar.Link href='#templates'>{t("home.templates")}</Navbar.Link>
             <Navbar.Link href="#contact">{t("home.contact")}</Navbar.Link>
             <Navbar.Link href='#about'>{t("home.about")}</Navbar.Link>

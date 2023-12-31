@@ -13,7 +13,7 @@ const About = () => {
                     <img src="prologue.png" alt="prologue" />
                 </div>
                 <div className="sm:w-1/2 p-3">
-                    <h3 class="text-3xl font-bold mb-3 text-center">{t("home.prologue")}</h3>
+                    <h3 className="text-3xl font-bold mb-3 text-center">{t("home.prologue")}</h3>
                     <p className="text-center text-gray-500" dir={`${i18n.language === "ar" ? 'rtl' : 'ltr'}`}>{t("home.paragraph5")}</p>
                 </div>
             </div>
@@ -22,7 +22,7 @@ const About = () => {
                     <img src="chapterOne.png" alt="Chapte One" />
                 </div>
                 <div className="sm:w-1/2 p-3">
-                    <h3 class="text-3xl font-bold mb-3 text-center">{t("home.chapter_one")}</h3>
+                    <h3 className="text-3xl font-bold mb-3 text-center">{t("home.chapter_one")}</h3>
                     <p className="text-center text-gray-500" dir={`${i18n.language === "ar" ? 'rtl' : 'ltr'}`}>{t("home.paragraph6")}</p>
                 </div>
             </div>
@@ -31,7 +31,7 @@ const About = () => {
                     <img src="future.png" alt="Next Steps" />
                 </div>
                 <div className="sm:w-1/2 p-3">
-                    <h3 class="text-3xl font-bold mb-3 text-center">{t("home.whats_next")}</h3>
+                    <h3 className="text-3xl font-bold mb-3 text-center">{t("home.whats_next")}</h3>
                     <p className="text-center text-gray-500">{t("home.paragraph7")}</p>
                 </div>
             </div>

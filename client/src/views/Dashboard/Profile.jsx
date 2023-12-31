@@ -33,7 +33,7 @@ const Profile = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient()
 
-  const { isLoading, error } = useQuery("user-info", () => {
+  const { isLoading, error } = useQuery("profile", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data);
   },
   {
@@ -54,6 +54,10 @@ const Profile = () => {
         setUserHasData(false);
       }
     },
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnmount: false,
+    refetchOnReconnect: false,
   });
   
   const handleFileInput = (e) => {
@@ -80,7 +84,7 @@ const Profile = () => {
       onSuccess: (data) => {
         if (data.success) {
           toast.success(data.message, { duration: 5000 });
-          queryClient.invalidateQueries('user-info');
+          queryClient.invalidateQueries('profile');
         } else {
           let errors = data.data;
           if (errors) {          
@@ -96,10 +100,6 @@ const Profile = () => {
         console.log(error);
         toast.error(t("dashboard.error_something_wrong"), { duration: 5000 });
       },
-      retry: false,
-      refetchOnWindowFocus: false,
-      refetchOnmount: false,
-      refetchOnReconnect: false,
     }
   );
 
@@ -121,7 +121,7 @@ const Profile = () => {
     setEditable(false);
   }
 
-  if (isLoading) return <Loading />;
+  if (isLoading || mutation.isLoading) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <div className="relative bg-white w-full h-full rounded-[10px] flex flex-col md:flex-row overflow-y-scroll p-[40px] gap-[20px]">

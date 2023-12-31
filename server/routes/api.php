@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
     Route::post('/contact', [ContactController::class, 'contact']);
+    
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/register', [Auth::class, 'register']);
         Route::post('/login', [Auth::class, 'login']);
