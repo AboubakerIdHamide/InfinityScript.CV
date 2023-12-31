@@ -22,11 +22,12 @@ const Templates = () => {
         
             <div className="h-screen">
             <Carousel pauseOnHover className='relative' >
-                <img src="/templates/template1.png" className='sm:w-1/3'  alt="..." />
                 <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
-                <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
-                <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
-                <img src="/templates/template1.png" className='sm:w-1/3' alt="..." />
+                <img src="/templates/template2.png" className='sm:w-1/3' alt="..." />
+                <img src="/templates/template3.png" className='sm:w-1/3' alt="..." />
+                <img src="/templates/template4.png" className='sm:w-1/3' alt="..." />
+                <img src="/templates/template5.png" className='sm:w-1/3' alt="..." />
+                <img src="/templates/template6.png" className='sm:w-1/3' alt="..." />
             </Carousel>
             </div>
         </div>

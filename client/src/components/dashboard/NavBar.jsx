@@ -14,7 +14,6 @@ const NavBar = ({ setIsOpen, isOpen, picture }) => {
   const { auth } = useSelector(state => state);
 
 
-
   const logout = () => {
     dispatch(setLogout());
     navigate("/auth/login");

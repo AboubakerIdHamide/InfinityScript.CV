@@ -23,7 +23,7 @@ const ForgotPassword = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
 
-  const mutation = useMutation(async (data) => { 
+  const mutation = useMutation(async (data) => {
     return await axios.post(`${SERVER_URL}/api/${global.lang}/auth/forgot-password`, data).then((res)=>res.data);
   }, {
     onSuccess: (data) => {
