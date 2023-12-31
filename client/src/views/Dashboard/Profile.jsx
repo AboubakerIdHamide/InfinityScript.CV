@@ -33,7 +33,7 @@ const Profile = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient()
 
-  const { isLoading, error } = useQuery("profile", () => {
+  const { isLoading, error, isFetching } = useQuery("profile", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data);
   },
   {
@@ -121,7 +121,7 @@ const Profile = () => {
     setEditable(false);
   }
 
-  if (isLoading || mutation.isLoading) return <Loading />;
+  if (isLoading || mutation.isLoading || isFetching) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <div className="relative bg-white w-full h-full rounded-[10px] flex flex-col md:flex-row overflow-y-scroll p-[40px] gap-[20px]">

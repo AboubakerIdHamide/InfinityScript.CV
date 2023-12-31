@@ -9,11 +9,17 @@ import { useTranslation } from "react-i18next";
 
 const MyResumes = () => {
   const [progress, setProgress] = useState(0);
+  const [downloadTemplateId, setDownloadTemplateId] = useState(0);
   const { global, auth } = useSelector(state => state);
   const { t } = useTranslation();
 
-  const { isLoading, error, data } = useQuery("resumes", () => {
+  const { isLoading, error, data, isFetching } = useQuery("resumes", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/resumes`).then((res)=>res.data.data);
+  }, {
+    retry: false,
+    refetchOnWindowFocus: false,
+    refetchOnmount: false,
+    refetchOnReconnect: false,
   });
 
   const mutation = useMutation((data) => { 
@@ -25,19 +31,21 @@ const MyResumes = () => {
       },
     }).then((res)=>res.data);
   },
-    { onSuccess: (data) => { 
+    {
+      onSuccess: (data) => { 
         const blobUrl = window.URL.createObjectURL(new Blob([data]));
         const link = document.createElement('a');
         link.href = blobUrl;
         link.setAttribute('download', `${auth.user.email}.pdf`);
         link.click();
-        setProgress(0);
+      setProgress(0);
+      setDownloadTemplateId(0);
         link.remove();
       }
     }
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading || isFetching) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <div className="bg-white w-full h-full rounded-[10px] p-4 flex justify-evenly gap-[20px] flex-wrap overflow-y-scroll">
@@ -49,13 +57,13 @@ const MyResumes = () => {
             <img src={`${SERVER_URL}/${template.preview_img}`} alt="" className="rounded-lg"/>
           </div>
           <div className="col-span-2 z-[1] flex justify-evenly items-center text-royal-purple rounded-lg relative">
-            <span className="absolute z-[-1] top-0 left-0 bg-[#7752FE77] text-white rounded-lg h-full" style={{width:`${progress}%`}}></span>
+            <span className="absolute z-[-1] top-0 left-0 bg-[#7752FE77] text-white rounded-lg h-full" style={{width:`${template.id == downloadTemplateId ? progress : 0}%`}}></span>
             <span>{ template.name }</span>
             <button
               disabled={mutation.isLoading}
-              onClick={() => mutation.mutate({ template_id: template.id, user_id: auth.user.id })}
+              onClick={() =>{setDownloadTemplateId(template.id); mutation.mutate({ template_id: template.id, user_id: auth.user.id });}}
               className={`${mutation.isLoading ?"text-[gray]" : "text-royal-purple"} rounded-md bg-slate-300 hover:bg-slate-600 hover:text-slate-200 duration-300 p-2`}>
-                <HiOutlineCloudDownload className="text-xl" />
+                <HiOutlineCloudDownload className={`text-xl ${template.id == downloadTemplateId ? "cursor-not-allowed": ""}`}/>
             </button>
           </div>
         </div>
