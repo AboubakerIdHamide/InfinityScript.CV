@@ -32,8 +32,7 @@ const About = () => {
                 </div>
                 <div className="sm:w-1/2 p-3">
                     <h3 class="text-3xl font-bold mb-3 text-center">{t("home.whats_next")}</h3>
-                    <p className="text-center text-gray-500">{t("home.paragraph7")}
-                    </p>
+                    <p className="text-center text-gray-500">{t("home.paragraph7")}</p>
                 </div>
             </div>
         </div>

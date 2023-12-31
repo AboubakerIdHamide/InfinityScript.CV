@@ -4,17 +4,26 @@
 import { Button, Navbar, Footer  } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { Body, Templates, Contact, About} from "../../components/home";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { languages } from '../../utils/constants';
+import { setLanguage } from "../../store/reducers/global";
+import { useEffect } from 'react';
 
 const Home = () => {
+  const dispatch = useDispatch();
   const { i18n,t } = useTranslation();
   const { auth } = useSelector(state => state);
+  const { lang } = useSelector(state => state.global);
+
   const changeLanguage = (e) => {
     i18n.changeLanguage(e.target.value);
     dispatch(setLanguage(e.target.value));
   };
+
+  useEffect(()=>{
+    i18n.changeLanguage(lang);
+  })
   return (
     <div className="flex flex-col gap-10 bg-[url('colored-bg.jpg')] bg-no-repeat bg-cover">
     <div className="fixed w-screen h-auto ">
