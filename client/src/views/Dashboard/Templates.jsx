@@ -11,7 +11,7 @@ const Templates = () => {
   const { isLoading, error, data, isFetching } = useQuery("templates", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/templates`).then((res)=>res.data.data);
   }, {
-    retry: false,
+    retry: 3,
     refetchOnWindowFocus: false,
     refetchOnmount: false,
     refetchOnReconnect: false,
@@ -20,7 +20,7 @@ const Templates = () => {
   if (isLoading || isFetching) return <Loading />;
   if (error) return <Error error={error} />;
   return (
-    <div className="bg-white w-full h-full rounded-[10px] p-4 flex justify-evenly gap-[20px] flex-wrap overflow-y-scroll">
+    <div className="bg-white w-full h-full rounded-[10px] p-[30px] grid grid-cols-3 gap-[20px] overflow-y-scroll">
       {data.map((template) => (
         <div key={template.id} className="w-60 h-[380px] from-slate-300 to-slate-100 text-slate-600 border border-slate-300 grid grid-col-2 justify-center p-1 gap-1 rounded-lg shadow-md">
           <div className="col-span-2 rounded-md">

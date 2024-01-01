@@ -181,6 +181,34 @@ class CvController extends Controller
             ], 422);
         }
     }
+
+    public function deleteResume(CvRequest $request){
+        try{
+            $data = $request->validated();
+            $user = User::find($data["user_id"]);
+            $template = Template::find($data["template_id"]);
+            $resume = Resume::where("user_id", $user->id)->where("template_id", $template->id)->first();
+            if(!$resume){
+                return response()->json([
+                    "success" => false,
+                    "message" => __("cv.delete_error"),
+                    "data" => null,
+                ], 422);
+            }
+            $resume->delete();
+            return response()->json([
+                "success" => true,
+                "message" => __("cv.delete_success"),
+                "data" => null,
+            ], 200);
+        }catch(Exception $e){
+            return response()->json([
+                "success" => false,
+                "message" => __("cv.delete_error"),
+                "data" => $e->getMessage(),
+            ], 422);
+        }
+    }
 }
 
 

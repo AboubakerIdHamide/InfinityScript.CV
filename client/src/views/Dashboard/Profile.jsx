@@ -31,7 +31,7 @@ const Profile = () => {
   const [userHasData, setUserHasData] = useState(true);
   const { global, auth } = useSelector(state => state);
   const { t } = useTranslation();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const { isLoading, error, isFetching } = useQuery("profile", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data);
