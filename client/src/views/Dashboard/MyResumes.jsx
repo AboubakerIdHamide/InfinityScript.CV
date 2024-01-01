@@ -69,7 +69,7 @@ const MyResumes = () => {
   if (isLoading || isFetching) return <Loading />;
   if (error) return <Error error={error} />;
   return (
-    <div className={`bg-white w-full h-full rounded-[10px] p-[30px] ${data.length == 0 ? "flex justify-center items-center": "grid grid-cols-3 gap-[20px]"} overflow-y-scroll`}>
+    <div className="bg-white w-full h-full rounded-[10px] p-[15px] flex justify-center md:justify-start flex-wrap gap-3 overflow-y-scroll">
       {data.length == 0 ?
         (<h1 className="w-full h-full flex items-center justify-center text-royal-purple text-xl text-center">{t("dashboard.dont_have_resumes")}</h1>) :
         data.map((template) => (
