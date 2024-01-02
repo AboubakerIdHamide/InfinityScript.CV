@@ -27,7 +27,7 @@ const NavBar = ({ setIsOpen, isOpen, picture }) => {
     <Navbar fluid rounded className='h-[10vh]'>
       <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="/logo-no-background.png" className="mr-3 h-6 sm:h-9 scale-125" alt="InfinityScript.CV" />
-        <span className="self-center text-royal-purple whitespace-nowrap text-xl font-semibold dark:text-white hidden sm:inline">InfinityScript.CV</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white hidden sm:inline">Infinity<span className='text-royal-purple'>Script</span>CV</span>
       </Link>
       <div className="flex">
         <select value={i18n.language} onChange={changeLanguage} className="font-mono text-royal-purple font-bold w-[106px] text-sm me-2 border-0 focus:ring-0">
