@@ -48,6 +48,7 @@ Route::group(['middleware'=> 'setapplang', 'prefix' => '{locale}'], function(){
         Route::resource('/skills', SkillController::class)->except(['edit', 'create']);
         Route::post("/download", [CvController::class, "download"]);
         Route::post("/create-resume-update-profile", [CvController::class, "createResumeUpdateProfile"]);
+        Route::post("/delete-resume", [CvController::class, "deleteResume"]);
     });
 });
 

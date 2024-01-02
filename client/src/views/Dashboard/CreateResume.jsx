@@ -38,7 +38,7 @@ const CreateResume = () => {
     setShowSaveBtns
   };
 
-  const { isLoading, error } = useQuery("user-info", () => {
+  const { isLoading, error, isFetching } = useQuery("user-info", () => {
     return axios.get(`${SERVER_URL}/api/${global.lang}/users/${auth.user.id}/data`).then((res)=>res.data);
   }, {
     onSuccess: ({ success, data }) => {
@@ -128,7 +128,7 @@ const CreateResume = () => {
     mutation.mutate(formData);
   }
 
-  if (isLoading || mutation.isLoading) return <Loading />;
+  if (isLoading || mutation.isLoading || isFetching) return <Loading />;
   if (error) return <Error error={error} />;
   return (
     <div className="bg-white w-full h-full rounded-[10px] flex overflow-y-scroll">
